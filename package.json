@@ -12,10 +12,12 @@
     "lint": "neutrino lint"
   },
   "dependencies": {
+    "metrics-graphics": "^2.13.0",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-hot-loader": "^4.0.0"
+    "react-hot-loader": "^4.0.0",
+    "react-metrics-graphics": "^1.0.2"
   },
   "devDependencies": {
     "@neutrinojs/airbnb": "^8.1.2",
