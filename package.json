@@ -6,6 +6,7 @@
   "author": "Armen Zambrano G. <armenzg@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "deploy": "neutrino build && gh-pages -d build",
     "build": "neutrino build",
     "start": "neutrino start",
     "lint": "neutrino lint"
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@neutrinojs/airbnb": "^8.1.2",
     "@neutrinojs/react": "^8.1.2",
+    "gh-pages": "^1.1.0",
     "neutrino": "^8.1.2"
   }
 }
