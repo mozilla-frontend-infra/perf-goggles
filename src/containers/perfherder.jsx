@@ -17,6 +17,19 @@ export default class PerfherderContainer extends Component {
     this.setState({ perfherderUrl, data });
   }
 
+  async componentDidUpdate(prevProps) {
+    // The component has been called with new props and we
+    // need to update the state or the old state will be used
+    if (this.props.suite !== prevProps.suite) {
+      const { perfherderUrl, data } = await subbenchmarks({
+        platform: this.props.platform,
+        suite: this.props.suite,
+      });
+      // eslint-disable-next-line
+      this.setState({ perfherderUrl, data });
+    }
+  }
+
   render() {
     const { perfherderUrl, data } = this.state;
 
@@ -31,6 +44,9 @@ export default class PerfherderContainer extends Component {
         {data && (
           <div>
             <a href={perfherderUrl} target="_blank">{this.props.suite} (all subtests)</a>
+            <div>NOTE: When switching benchmarks you will notice the graphs will take
+              long to redraw.
+            </div>
             {Object.values(data).sort(sortAlphabetically).map(el => (
               <div key={el.meta.test} style={{ textAlign: 'center' }}>
                 <a href={el.meta.url} target="_blank">{el.meta.test}</a>

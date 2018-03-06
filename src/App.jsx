@@ -1,11 +1,15 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
-import PerfherderContainer from './containers/perfherder';
+import ListSuites from './components/list_suites';
 
 
 export default class App extends Component {
   state = {
     hasError: undefined,
+    configuration: {
+      linux64: ['ARES6', 'JetStream', 'motionmark_htmlsuite', 'motionmark_animometer'],
+    },
   }
 
   componentDidCatch(error, info) {
@@ -18,12 +22,13 @@ export default class App extends Component {
       // You can render any custom fallback UI
       return <h1>Something went wrong.</h1>;
     }
+
+    const { configuration } = this.state;
+
     return (
-      <div className="App">
-        <PerfherderContainer
-          suite="ARES6"
-          platform="linux64"
-        />
+      <div>
+        <Link to="/" href="/">Home</Link>
+        <ListSuites configuration={configuration} />
       </div>
     );
   }
