@@ -28,7 +28,16 @@ export default class App extends Component {
             {Object.values(data).map(el => (
               <div key={el.meta.test} style={{ textAlign: 'center' }}>
                 <a href={el.meta.url} target="_blank">{el.meta.test}</a>
-                <Graph key={el.meta.test} {...el} />
+                <Graph
+                  key={el.meta.test}
+                  {...el}
+                  graphOptions={{
+                    x_accessor: 'datetime',
+                    y_accessor: 'value',
+                    min_y_from_data: true,
+                    full_width: true,
+                  }}
+                />
               </div>
             ))}
           </div>

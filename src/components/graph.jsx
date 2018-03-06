@@ -2,18 +2,16 @@ import React from 'react';
 import MetricsGraphics from 'react-metrics-graphics';
 import propTypes from 'prop-types';
 
-const Benchmark = ({ data }) => (
+const Benchmark = ({ data, graphOptions }) => (
   <MetricsGraphics
     data={[data]}
-    width={600}
-    height={250}
-    x_accessor="datetime"
-    y_accessor="value"
+    {...graphOptions}
   />
 );
 
 Benchmark.propTypes = {
   data: propTypes.arrayOf(propTypes.object).isRequired,
+  graphOptions: propTypes.shape({}).isRequired,
 };
 
 export default Benchmark;
