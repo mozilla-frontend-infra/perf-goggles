@@ -20,12 +20,18 @@ export default class PerfherderContainer extends Component {
   render() {
     const { perfherderUrl, data } = this.state;
 
+    const sortAlphabetically = (a, b) => {
+      if (a.meta.test < b.meta.test) return -1;
+      if (a.meta.test > b.meta.test) return 1;
+      return 0;
+    };
+
     return (
       <div>
         {data && (
           <div>
             <a href={perfherderUrl} target="_blank">{this.props.suite} (all subtests)</a>
-            {Object.values(data).map(el => (
+            {Object.values(data).sort(sortAlphabetically).map(el => (
               <div key={el.meta.test} style={{ textAlign: 'center' }}>
                 <a href={el.meta.url} target="_blank">{el.meta.test}</a>
                 <Graph
