@@ -1,17 +1,21 @@
 /* global fetch */
 const TREEHERDER = 'https://treeherder.mozilla.org';
 const PROJECT = 'mozilla-central';
-const SIGNATURES_URL = `${TREEHERDER}/api/project/${PROJECT}/performance/signatures`;
+const NINENTY_DAYS = '7776000';
+
+const signaturesUrl = (project = PROJECT) => (
+  `${TREEHERDER}/api/project/${project}/performance/signatures`
+);
 
 const subtests = async (signatureHash) => {
-  const url = `${SIGNATURES_URL}/?parent_signature=${signatureHash}`;
+  const url = `${signaturesUrl()}/?parent_signature=${signatureHash}`;
   return (await fetch(url)).json();
 };
 
 const parentSignatureHash = async (suite, platform, option = 'pgo') => {
   const [options, signatures] = await Promise.all([
     await (await fetch(`${TREEHERDER}/api/optioncollectionhash/`)).json(),
-    await (await fetch(`${SIGNATURES_URL}/?framework=1&platform=${platform}&subtests=0`)).json(),
+    await (await fetch(`${signaturesUrl()}/?framework=1&platform=${platform}&subtests=0`)).json(),
   ]);
 
   // Create a structure with only jobs matching the suite, make option_collection_hash
@@ -48,16 +52,16 @@ const parentSignatureHash = async (suite, platform, option = 'pgo') => {
   return result[0];
 };
 
-const subtestsSignatureUrl = (tests) => {
+const subtestsSignatureUrl = (tests, project = PROJECT, interval = NINENTY_DAYS) => {
   // We probably want to get more data than just the ids (e.g. names, etc)
   const signatureIds = Object.values(tests).map(v => v.id);
-  let baseDataUrl = `${TREEHERDER}/api/project/${PROJECT}/performance/data/?framework=1&interval=1209600`;
+  let baseDataUrl = `${TREEHERDER}/api/project/${project}/performance/data/?framework=1&interval=${interval}`;
   baseDataUrl += `&${signatureIds.map(id => `signature_id=${id}`).join('&')}`;
   return baseDataUrl;
 };
 
-const perherderGraphUrl = (signatureIds, platform, project = PROJECT) => {
-  let baseDataUrl = `${TREEHERDER}/perf.html#/graphs?timerange=7776000`;
+const perherderGraphUrl = (signatureIds, platform, project = PROJECT, timerange = NINENTY_DAYS) => {
+  let baseDataUrl = `${TREEHERDER}/perf.html#/graphs?timerange=${timerange}`;
   baseDataUrl += `&${signatureIds.map(id => `series=${project},${id},1,1`).join('&')}`;
   return baseDataUrl;
 };
