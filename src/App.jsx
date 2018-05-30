@@ -14,6 +14,7 @@ export default class App extends Component {
 
   componentDidCatch(error, info) {
     this.setState({ hasError: true });
+    // eslint-disable-next-line no-console
     console.log(error, info);
   }
 
