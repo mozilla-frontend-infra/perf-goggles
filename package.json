@@ -1,0 +1,17 @@
+{
+  "name": "perf-goggles",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:csd713/perf-goggles.git",
+  "author": "Chiranjeevi <jeevi146@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "neutrino build",
+    "lint": "neutrino lint"
+  },
+  "devDependencies": {
+    "@neutrinojs/airbnb-base": "^8.2.3",
+    "@neutrinojs/library": "^8.2.3",
+    "neutrino": "^8.2.3"
+  }
+}
