@@ -9,6 +9,7 @@ module.exports = {
         }
       }
     ],
+    ['@neutrinojs/mocha', { recursive: true }],
     (neutrino) => {
       // Read https://stackoverflow.com/a/36623117
       // This is the key to making React Router work with neutrino

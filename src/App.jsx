@@ -3,17 +3,26 @@ import { Link } from 'react-router-dom';
 import './App.css';
 import ListSuites from './components/list_suites';
 
+const DEFAULT_BENCHMARKS = [
+  'ARES6',
+  'JetStream',
+  'motionmark_htmlsuite',
+  'motionmark_animometer',
+];
 
 export default class App extends Component {
   state = {
     hasError: undefined,
     configuration: {
-      linux64: ['ARES6', 'JetStream', 'motionmark_htmlsuite', 'motionmark_animometer'],
+      linux64: DEFAULT_BENCHMARKS,
+      'windows7-32': DEFAULT_BENCHMARKS,
+      'windows10-64': DEFAULT_BENCHMARKS,
     },
   }
 
   componentDidCatch(error, info) {
     this.setState({ hasError: true });
+    // eslint-disable-next-line no-console
     console.log(error, info);
   }
 

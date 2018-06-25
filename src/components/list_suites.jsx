@@ -20,18 +20,17 @@ const ListSuites = ({ configuration }) => (
     {Object.keys(configuration).map(platform => (
       <div key={platform}>
         <span>{`Select a suite for "${platform}":`}</span>
-        <ul>
-          {configuration[platform].map(suite => (
-            <li key={suite}>
-              <Link
-                to={`/${platform}/${suite}`}
-                href={`/${platform}/${suite}`}
-              >
-                {suite}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {configuration[platform].map(suite => (
+          <span key={suite}>
+            <Link
+              to={`/${platform}/${suite}`}
+              href={`/${platform}/${suite}`}
+            >
+              {suite}
+            </Link>
+            <span>&nbsp;</span>
+          </span>
+        ))}
       </div>
     ))}
     <hr />

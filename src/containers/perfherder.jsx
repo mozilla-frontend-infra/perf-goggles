@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import propTypes from 'prop-types';
 import Graph from '../components/graph';
-import subbenchmarks from '../utils/perfherder';
+import { subbenchmarksData } from '../utils/perfherder';
 
 export default class PerfherderContainer extends Component {
   state = {
@@ -9,10 +9,10 @@ export default class PerfherderContainer extends Component {
   }
 
   async componentDidMount() {
-    const { perfherderUrl, data } = await subbenchmarks({
-      platform: this.props.platform,
-      suite: this.props.suite,
-    });
+    const { perfherderUrl, data } = await subbenchmarksData(
+      this.props.platform,
+      this.props.suite,
+    );
     // eslint-disable-next-line
     this.setState({ perfherderUrl, data });
   }
@@ -21,10 +21,10 @@ export default class PerfherderContainer extends Component {
     // The component has been called with new props and we
     // need to update the state or the old state will be used
     if (this.props.suite !== prevProps.suite) {
-      const { perfherderUrl, data } = await subbenchmarks({
-        platform: this.props.platform,
-        suite: this.props.suite,
-      });
+      const { perfherderUrl, data } = await subbenchmarksData(
+        this.props.platform,
+        this.props.suite,
+      );
       // eslint-disable-next-line
       this.setState({ perfherderUrl, data });
     }
