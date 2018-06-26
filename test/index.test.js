@@ -6,18 +6,18 @@ import {
   subtestsPerfDataUrl,
   subbenchmarksData,
   TREEHERDER,
-} from '../../src/utils/perfherder';
+} from '../src';
 
 const assert = require('assert');
-const LINUX64_SIGNATURES = require('../mocks/linux64/signaturesNoSubtests');
-const LINUX64_JETSTREAM_DATA = require('../mocks/linux64/JetStream/data');
-const LINUX64_JETSTREAM_SUBTESTS = require('../mocks/linux64/JetStream/subtests');
-const LINUX64_JETSTREAM_EXPECTED_DATA = require('../mocks/linux64/JetStream/expected');
-const WIN10_SIGNATURES = require('../mocks/win10/signaturesNoSubtests');
-const WIN10_MMA_SUBTESTS = require('../mocks/win10/MotionMarkAnimometer/subtests');
-const WIN10_MMA_DATA = require('../mocks/win10/MotionMarkAnimometer/data');
-const WIN10_MMA_EXPECTED_DATA = require('../mocks/win10/MotionMarkAnimometer/expected');
-const OPTION_COLLECTION_HASHES = require('../mocks/optionCollectionHash');
+const LINUX64_SIGNATURES = require('./mocks/linux64/signaturesNoSubtests');
+const LINUX64_JETSTREAM_DATA = require('./mocks/linux64/JetStream/data');
+const LINUX64_JETSTREAM_SUBTESTS = require('./mocks/linux64/JetStream/subtests');
+const LINUX64_JETSTREAM_EXPECTED_DATA = require('./mocks/linux64/JetStream/expected');
+const WIN10_SIGNATURES = require('./mocks/win10/signaturesNoSubtests');
+const WIN10_MMA_SUBTESTS = require('./mocks/win10/MotionMarkAnimometer/subtests');
+const WIN10_MMA_DATA = require('./mocks/win10/MotionMarkAnimometer/data');
+const WIN10_MMA_EXPECTED_DATA = require('./mocks/win10/MotionMarkAnimometer/expected');
+const OPTION_COLLECTION_HASHES = require('./mocks/optionCollectionHash');
 
 const downcastDatetimesToStrings = (data) => {
   const newData = Object.assign({}, data);
