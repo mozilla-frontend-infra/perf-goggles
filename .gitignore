@@ -62,3 +62,6 @@ build/
 
 # Code coverage (nyc)
 coverage
+
+# Side effect of npm link
+package-lock.json
