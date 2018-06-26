@@ -2,9 +2,9 @@
   "name": "perf-goggles",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:csd713/perf-goggles.git",
-  "author": "Chiranjeevi <jeevi146@gmail.com>",
-  "license": "MIT",
+  "repository": "git@github.com:mozilla-frontend-infra/perf-goggles.git",
+  "author": "Armen Zambrano G. <armenzg@gmail.com>",
+  "license": "Mozilla Public License 2.0",
   "scripts": {
     "build": "neutrino build",
     "lint": "neutrino lint"
