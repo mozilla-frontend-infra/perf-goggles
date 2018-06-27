@@ -11,7 +11,8 @@
     "start": "neutrino start",
     "lint": "neutrino lint",
     "test": "neutrino test",
-    "coverage": "nyc -r lcov -r text yarn test"
+    "coverage": "nyc -r lcov -r text yarn test",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "nyc": {
     "include": ["src/**"]
@@ -31,6 +32,7 @@
     "@neutrinojs/airbnb": "^8.1.2",
     "@neutrinojs/mocha": "^8.2.3",
     "@neutrinojs/react": "^8.1.2",
+    "coveralls": "^3.0.1",
     "fetch-mock": "^6.4.3",
     "gh-pages": "^1.1.0",
     "neutrino": "^8.1.2",
