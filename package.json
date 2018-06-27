@@ -10,7 +10,11 @@
     "build": "neutrino build",
     "start": "neutrino start",
     "lint": "neutrino lint",
-    "test": "neutrino test"
+    "test": "neutrino test",
+    "coverage": "nyc -r lcov -r text yarn test"
+  },
+  "nyc": {
+    "include": ["src/**"]
   },
   "dependencies": {
     "metrics-graphics": "^2.13.0",
@@ -29,6 +33,7 @@
     "@neutrinojs/react": "^8.1.2",
     "fetch-mock": "^6.4.3",
     "gh-pages": "^1.1.0",
-    "neutrino": "^8.1.2"
+    "neutrino": "^8.1.2",
+    "nyc": "^12.0.2"
   }
 }
