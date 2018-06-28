@@ -1,4 +1,5 @@
 /* global fetch */
+import { isEqual } from 'lodash';
 import { stringify } from 'query-string';
 
 export const TREEHERDER = 'https://treeherder.mozilla.org';
@@ -88,12 +89,14 @@ const signaturesForPlatformSuite = async (platform, suite) => {
   return filteredSignatures;
 };
 
-const findParentSignatureHash = (signatures, options, option) => {
+const findParentSignatureHash = (signatures, options, option, extraOptions) => {
   const result = [];
   Object.keys(signatures).forEach((hash) => {
     const signature = signatures[hash];
     const optionCollection = options[signature.option_collection_hash];
-    if (optionCollection && optionCollection.includes(option)) {
+    if (optionCollection &&
+        optionCollection.includes(option) &&
+        isEqual(signature.extra_options, extraOptions)) {
       result.push(signature.parentSignatureHash);
     }
   });
@@ -105,21 +108,25 @@ const findParentSignatureHash = (signatures, options, option) => {
   return result[0];
 };
 
-export const parentSignatureHash = async (platform, suite, option = 'pgo') => {
+export const parentSignatureHash = async (platform, suite, option, extraOptions) => {
   const [signatures, options] = await Promise.all([
     signaturesForPlatformSuite(platform, suite, option),
     treeherderOptions(),
   ]);
-  return findParentSignatureHash(signatures, options, option);
+  return findParentSignatureHash(signatures, options, option, extraOptions);
 };
 
 const prepareData = async (subtestsInfo) => {
   const signatureIds = Object.values(subtestsInfo).map(v => v.id);
+  const data = {
+    // Link to Perfherder with all subtests
+    perfherderUrl: perherderGraphUrl(signatureIds),
+    data: {},
+  };
   const dataPoints = await fetchPerfDataForSubtests(signatureIds);
 
-  const subtestsPerfData = {};
   Object.keys(dataPoints).forEach((subtestHash) => {
-    subtestsPerfData[subtestHash] = {
+    data.data[subtestHash] = {
       meta: {
         url: perherderGraphUrl([subtestHash]),
         ...subtestsInfo[subtestHash], // Original object from Perfherder
@@ -131,15 +138,14 @@ const prepareData = async (subtestsInfo) => {
     };
   });
 
-  return {
-    // Link to Perfherder with all subtests
-    perfherderUrl: perherderGraphUrl(signatureIds),
-    data: subtestsPerfData,
-  };
+  return data;
 };
 
-export const subbenchmarksData = async (platform, suite, option = 'pgo') => {
-  const parentHash = await parentSignatureHash(platform, suite, option);
+export const subbenchmarksData = async (platform, suite, option, extraOptions) => {
+  const parentHash = await parentSignatureHash(platform, suite, option, extraOptions);
+  if (!parentHash) {
+    return {};
+  }
   const subtests = await querySubtestsAssociatedToParent(parentHash);
   return prepareData(subtests);
 };

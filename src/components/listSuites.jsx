@@ -1,19 +1,5 @@
-import { Route, Link } from 'react-router-dom';
 import propTypes from 'prop-types';
-import PerfherderContainer from '../containers/perfherder';
-
-const PlotSuite = ({ match }) => (
-  <div>
-    <PerfherderContainer
-      suite={match.params.suite}
-      platform={match.params.platform}
-    />
-  </div>
-);
-
-PlotSuite.propTypes = {
-  match: propTypes.shape({}).isRequired,
-};
+import { Link } from 'react-router-dom';
 
 const ListSuites = ({ configuration }) => (
   <div>
@@ -33,8 +19,6 @@ const ListSuites = ({ configuration }) => (
         ))}
       </div>
     ))}
-    <hr />
-    <Route path="/:platform/:suite" render={PlotSuite} />
   </div>
 );
 

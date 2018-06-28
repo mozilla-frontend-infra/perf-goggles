@@ -15,9 +15,12 @@
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "nyc": {
-    "include": ["src/**"]
+    "include": [
+      "src/**"
+    ]
   },
   "dependencies": {
+    "lodash": "^4.17.10",
     "metrics-graphics": "^2.13.0",
     "prop-types": "^15.6.1",
     "query-string": "^6.1.0",
