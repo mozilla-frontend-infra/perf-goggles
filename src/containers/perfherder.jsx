@@ -9,25 +9,25 @@ export default class PerfherderContainer extends Component {
   }
 
   async componentDidMount() {
-    const { perfherderUrl, data } = await subbenchmarksData(
-      this.props.platform,
-      this.props.suite,
-    );
-    // eslint-disable-next-line
-    this.setState({ perfherderUrl, data });
+    this.fetchPerfherderData();
   }
 
   async componentDidUpdate(prevProps) {
     // The component has been called with new props and we
     // need to update the state or the old state will be used
     if (this.props.suite !== prevProps.suite) {
-      const { perfherderUrl, data } = await subbenchmarksData(
-        this.props.platform,
-        this.props.suite,
-      );
-      // eslint-disable-next-line
-      this.setState({ perfherderUrl, data });
+      this.fetchPerfherderData();
     }
+  }
+
+  async fetchPerfherderData() {
+    const { perfherderUrl, data } = await subbenchmarksData(
+      this.props.platform,
+      this.props.suite,
+      this.props.buildType,
+      this.props.extraOptions,
+    );
+    this.setState({ perfherderUrl, data });
   }
 
   render() {
@@ -70,6 +70,8 @@ export default class PerfherderContainer extends Component {
 }
 
 PerfherderContainer.propTypes = {
+  buildType: propTypes.string.isRequired,
+  extraOptions: propTypes.arrayOf(propTypes.string).isRequired,
   platform: propTypes.string.isRequired,
   suite: propTypes.string.isRequired,
 };

@@ -1,0 +1,549 @@
+{
+  "perfherderUrl": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,1651446,1,1&series=mozilla-central,1651447,1,1&series=mozilla-central,1651448,1,1&series=mozilla-central,1651449,1,1",
+  "data": {
+    "793d36ca61ba5e3727542b170237e7192c50cc6b": {
+      "meta": {
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,793d36ca61ba5e3727542b170237e7192c50cc6b,1,1",
+        "extra_options": [
+          "e10s",
+          "stylo"
+        ],
+        "parent_signature": "947870e091eef0257755ce0e6fd6302e1704c15b",
+        "machine_platform": "linux64",
+        "id": 1651447,
+        "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
+        "framework_id": 1,
+        "test": "modify.html",
+        "suite": "dromaeo_dom",
+        "lower_is_better": false
+      },
+      "data": [
+        {
+          "push_id": 350159,
+          "value": 709.93,
+          "signature_id": 1651447,
+          "id": 494103356,
+          "push_timestamp": 1529944466,
+          "job_id": 184734903,
+          "datetime": "2018-06-25T16:34:26.000Z"
+        },
+        {
+          "push_id": 350222,
+          "value": 732.16,
+          "signature_id": 1651447,
+          "id": 494234158,
+          "push_timestamp": 1529953295,
+          "job_id": 184785927,
+          "datetime": "2018-06-25T19:01:35.000Z"
+        },
+        {
+          "push_id": 350224,
+          "value": 739.69,
+          "signature_id": 1651447,
+          "id": 494227591,
+          "push_timestamp": 1529953361,
+          "job_id": 184783441,
+          "datetime": "2018-06-25T19:02:41.000Z"
+        },
+        {
+          "push_id": 350459,
+          "value": 746.11,
+          "signature_id": 1651447,
+          "id": 494637210,
+          "push_timestamp": 1530004839,
+          "job_id": 184888669,
+          "datetime": "2018-06-26T09:20:39.000Z"
+        },
+        {
+          "push_id": 350564,
+          "value": 741.25,
+          "signature_id": 1651447,
+          "id": 494931132,
+          "push_timestamp": 1530024738,
+          "job_id": 184962506,
+          "datetime": "2018-06-26T14:52:18.000Z"
+        },
+        {
+          "push_id": 350565,
+          "value": 704.93,
+          "signature_id": 1651447,
+          "id": 494940433,
+          "push_timestamp": 1530024819,
+          "job_id": 184965119,
+          "datetime": "2018-06-26T14:53:39.000Z"
+        },
+        {
+          "push_id": 350749,
+          "value": 737.31,
+          "signature_id": 1651447,
+          "id": 495284456,
+          "push_timestamp": 1530050017,
+          "job_id": 185041512,
+          "datetime": "2018-06-26T21:53:37.000Z"
+        },
+        {
+          "push_id": 350981,
+          "value": 732.79,
+          "signature_id": 1651447,
+          "id": 495722199,
+          "push_timestamp": 1530095079,
+          "job_id": 185135941,
+          "datetime": "2018-06-27T10:24:39.000Z"
+        },
+        {
+          "push_id": 350997,
+          "value": 733.45,
+          "signature_id": 1651447,
+          "id": 495745921,
+          "push_timestamp": 1530097540,
+          "job_id": 185143305,
+          "datetime": "2018-06-27T11:05:40.000Z"
+        },
+        {
+          "push_id": 351308,
+          "value": 723.12,
+          "signature_id": 1651447,
+          "id": 496242516,
+          "push_timestamp": 1530137129,
+          "job_id": 185267258,
+          "datetime": "2018-06-27T22:05:29.000Z"
+        },
+        {
+          "push_id": 351309,
+          "value": 744.14,
+          "signature_id": 1651447,
+          "id": 496255802,
+          "push_timestamp": 1530137288,
+          "job_id": 185270168,
+          "datetime": "2018-06-27T22:08:08.000Z"
+        },
+        {
+          "push_id": 351474,
+          "value": 704.69,
+          "signature_id": 1651447,
+          "id": 496496966,
+          "push_timestamp": 1530179042,
+          "job_id": 185340374,
+          "datetime": "2018-06-28T09:44:02.000Z"
+        },
+        {
+          "push_id": 351482,
+          "value": 717.6,
+          "signature_id": 1651447,
+          "id": 496517850,
+          "push_timestamp": 1530180318,
+          "job_id": 185345944,
+          "datetime": "2018-06-28T10:05:18.000Z"
+        }
+      ]
+    },
+    "78b8bec0338005afcc0c57d9622c18f55b0d6193": {
+      "meta": {
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,78b8bec0338005afcc0c57d9622c18f55b0d6193,1,1",
+        "extra_options": [
+          "e10s",
+          "stylo"
+        ],
+        "parent_signature": "947870e091eef0257755ce0e6fd6302e1704c15b",
+        "machine_platform": "linux64",
+        "id": 1651446,
+        "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
+        "framework_id": 1,
+        "test": "attr.html",
+        "suite": "dromaeo_dom",
+        "lower_is_better": false
+      },
+      "data": [
+        {
+          "push_id": 350159,
+          "value": 5511.63,
+          "signature_id": 1651446,
+          "id": 494103354,
+          "push_timestamp": 1529944466,
+          "job_id": 184734903,
+          "datetime": "2018-06-25T16:34:26.000Z"
+        },
+        {
+          "push_id": 350222,
+          "value": 5621.31,
+          "signature_id": 1651446,
+          "id": 494234157,
+          "push_timestamp": 1529953295,
+          "job_id": 184785927,
+          "datetime": "2018-06-25T19:01:35.000Z"
+        },
+        {
+          "push_id": 350224,
+          "value": 5905.06,
+          "signature_id": 1651446,
+          "id": 494227589,
+          "push_timestamp": 1529953361,
+          "job_id": 184783441,
+          "datetime": "2018-06-25T19:02:41.000Z"
+        },
+        {
+          "push_id": 350459,
+          "value": 5673.6,
+          "signature_id": 1651446,
+          "id": 494637209,
+          "push_timestamp": 1530004839,
+          "job_id": 184888669,
+          "datetime": "2018-06-26T09:20:39.000Z"
+        },
+        {
+          "push_id": 350564,
+          "value": 5771.27,
+          "signature_id": 1651446,
+          "id": 494931131,
+          "push_timestamp": 1530024738,
+          "job_id": 184962506,
+          "datetime": "2018-06-26T14:52:18.000Z"
+        },
+        {
+          "push_id": 350565,
+          "value": 5479.64,
+          "signature_id": 1651446,
+          "id": 494940431,
+          "push_timestamp": 1530024819,
+          "job_id": 184965119,
+          "datetime": "2018-06-26T14:53:39.000Z"
+        },
+        {
+          "push_id": 350749,
+          "value": 5399.81,
+          "signature_id": 1651446,
+          "id": 495284455,
+          "push_timestamp": 1530050017,
+          "job_id": 185041512,
+          "datetime": "2018-06-26T21:53:37.000Z"
+        },
+        {
+          "push_id": 350981,
+          "value": 5648.08,
+          "signature_id": 1651446,
+          "id": 495722197,
+          "push_timestamp": 1530095079,
+          "job_id": 185135941,
+          "datetime": "2018-06-27T10:24:39.000Z"
+        },
+        {
+          "push_id": 350997,
+          "value": 5783.3,
+          "signature_id": 1651446,
+          "id": 495745919,
+          "push_timestamp": 1530097540,
+          "job_id": 185143305,
+          "datetime": "2018-06-27T11:05:40.000Z"
+        },
+        {
+          "push_id": 351308,
+          "value": 5659.75,
+          "signature_id": 1651446,
+          "id": 496242514,
+          "push_timestamp": 1530137129,
+          "job_id": 185267258,
+          "datetime": "2018-06-27T22:05:29.000Z"
+        },
+        {
+          "push_id": 351309,
+          "value": 5604.71,
+          "signature_id": 1651446,
+          "id": 496255801,
+          "push_timestamp": 1530137288,
+          "job_id": 185270168,
+          "datetime": "2018-06-27T22:08:08.000Z"
+        },
+        {
+          "push_id": 351474,
+          "value": 5802.03,
+          "signature_id": 1651446,
+          "id": 496496964,
+          "push_timestamp": 1530179042,
+          "job_id": 185340374,
+          "datetime": "2018-06-28T09:44:02.000Z"
+        },
+        {
+          "push_id": 351482,
+          "value": 5188.06,
+          "signature_id": 1651446,
+          "id": 496517845,
+          "push_timestamp": 1530180318,
+          "job_id": 185345944,
+          "datetime": "2018-06-28T10:05:18.000Z"
+        }
+      ]
+    },
+    "019d05b26679ad400a8ec0a8f4259b876e0a7845": {
+      "meta": {
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,019d05b26679ad400a8ec0a8f4259b876e0a7845,1,1",
+        "extra_options": [
+          "e10s",
+          "stylo"
+        ],
+        "parent_signature": "947870e091eef0257755ce0e6fd6302e1704c15b",
+        "machine_platform": "linux64",
+        "id": 1651448,
+        "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
+        "framework_id": 1,
+        "test": "query.html",
+        "suite": "dromaeo_dom",
+        "lower_is_better": false
+      },
+      "data": [
+        {
+          "push_id": 350159,
+          "value": 43613.49,
+          "signature_id": 1651448,
+          "id": 494103359,
+          "push_timestamp": 1529944466,
+          "job_id": 184734903,
+          "datetime": "2018-06-25T16:34:26.000Z"
+        },
+        {
+          "push_id": 350222,
+          "value": 43800.94,
+          "signature_id": 1651448,
+          "id": 494234159,
+          "push_timestamp": 1529953295,
+          "job_id": 184785927,
+          "datetime": "2018-06-25T19:01:35.000Z"
+        },
+        {
+          "push_id": 350224,
+          "value": 43361.01,
+          "signature_id": 1651448,
+          "id": 494227593,
+          "push_timestamp": 1529953361,
+          "job_id": 184783441,
+          "datetime": "2018-06-25T19:02:41.000Z"
+        },
+        {
+          "push_id": 350459,
+          "value": 44384.92,
+          "signature_id": 1651448,
+          "id": 494637211,
+          "push_timestamp": 1530004839,
+          "job_id": 184888669,
+          "datetime": "2018-06-26T09:20:39.000Z"
+        },
+        {
+          "push_id": 350564,
+          "value": 43559.86,
+          "signature_id": 1651448,
+          "id": 494931133,
+          "push_timestamp": 1530024738,
+          "job_id": 184962506,
+          "datetime": "2018-06-26T14:52:18.000Z"
+        },
+        {
+          "push_id": 350565,
+          "value": 42958.32,
+          "signature_id": 1651448,
+          "id": 494940435,
+          "push_timestamp": 1530024819,
+          "job_id": 184965119,
+          "datetime": "2018-06-26T14:53:39.000Z"
+        },
+        {
+          "push_id": 350749,
+          "value": 44050.19,
+          "signature_id": 1651448,
+          "id": 495284457,
+          "push_timestamp": 1530050017,
+          "job_id": 185041512,
+          "datetime": "2018-06-26T21:53:37.000Z"
+        },
+        {
+          "push_id": 350981,
+          "value": 43613.63,
+          "signature_id": 1651448,
+          "id": 495722202,
+          "push_timestamp": 1530095079,
+          "job_id": 185135941,
+          "datetime": "2018-06-27T10:24:39.000Z"
+        },
+        {
+          "push_id": 350997,
+          "value": 44179.09,
+          "signature_id": 1651448,
+          "id": 495745923,
+          "push_timestamp": 1530097540,
+          "job_id": 185143305,
+          "datetime": "2018-06-27T11:05:40.000Z"
+        },
+        {
+          "push_id": 351308,
+          "value": 43183.1,
+          "signature_id": 1651448,
+          "id": 496242518,
+          "push_timestamp": 1530137129,
+          "job_id": 185267258,
+          "datetime": "2018-06-27T22:05:29.000Z"
+        },
+        {
+          "push_id": 351309,
+          "value": 43164.28,
+          "signature_id": 1651448,
+          "id": 496255803,
+          "push_timestamp": 1530137288,
+          "job_id": 185270168,
+          "datetime": "2018-06-27T22:08:08.000Z"
+        },
+        {
+          "push_id": 351474,
+          "value": 43267.26,
+          "signature_id": 1651448,
+          "id": 496496967,
+          "push_timestamp": 1530179042,
+          "job_id": 185340374,
+          "datetime": "2018-06-28T09:44:02.000Z"
+        },
+        {
+          "push_id": 351482,
+          "value": 43280.85,
+          "signature_id": 1651448,
+          "id": 496517856,
+          "push_timestamp": 1530180318,
+          "job_id": 185345944,
+          "datetime": "2018-06-28T10:05:18.000Z"
+        }
+      ]
+    },
+    "7174750fde7272ab7cb47cf0021604d46160dbc0": {
+      "meta": {
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,7174750fde7272ab7cb47cf0021604d46160dbc0,1,1",
+        "extra_options": [
+          "e10s",
+          "stylo"
+        ],
+        "parent_signature": "947870e091eef0257755ce0e6fd6302e1704c15b",
+        "machine_platform": "linux64",
+        "id": 1651449,
+        "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
+        "framework_id": 1,
+        "test": "traverse.html",
+        "suite": "dromaeo_dom",
+        "lower_is_better": false
+      },
+      "data": [
+        {
+          "push_id": 350159,
+          "value": 573.21,
+          "signature_id": 1651449,
+          "id": 494103361,
+          "push_timestamp": 1529944466,
+          "job_id": 184734903,
+          "datetime": "2018-06-25T16:34:26.000Z"
+        },
+        {
+          "push_id": 350222,
+          "value": 574.66,
+          "signature_id": 1651449,
+          "id": 494234160,
+          "push_timestamp": 1529953295,
+          "job_id": 184785927,
+          "datetime": "2018-06-25T19:01:35.000Z"
+        },
+        {
+          "push_id": 350224,
+          "value": 565.57,
+          "signature_id": 1651449,
+          "id": 494227596,
+          "push_timestamp": 1529953361,
+          "job_id": 184783441,
+          "datetime": "2018-06-25T19:02:41.000Z"
+        },
+        {
+          "push_id": 350459,
+          "value": 581.68,
+          "signature_id": 1651449,
+          "id": 494637212,
+          "push_timestamp": 1530004839,
+          "job_id": 184888669,
+          "datetime": "2018-06-26T09:20:39.000Z"
+        },
+        {
+          "push_id": 350564,
+          "value": 573.18,
+          "signature_id": 1651449,
+          "id": 494931134,
+          "push_timestamp": 1530024738,
+          "job_id": 184962506,
+          "datetime": "2018-06-26T14:52:18.000Z"
+        },
+        {
+          "push_id": 350565,
+          "value": 571.51,
+          "signature_id": 1651449,
+          "id": 494940436,
+          "push_timestamp": 1530024819,
+          "job_id": 184965119,
+          "datetime": "2018-06-26T14:53:39.000Z"
+        },
+        {
+          "push_id": 350749,
+          "value": 568.71,
+          "signature_id": 1651449,
+          "id": 495284458,
+          "push_timestamp": 1530050017,
+          "job_id": 185041512,
+          "datetime": "2018-06-26T21:53:37.000Z"
+        },
+        {
+          "push_id": 350981,
+          "value": 563.05,
+          "signature_id": 1651449,
+          "id": 495722204,
+          "push_timestamp": 1530095079,
+          "job_id": 185135941,
+          "datetime": "2018-06-27T10:24:39.000Z"
+        },
+        {
+          "push_id": 350997,
+          "value": 572.85,
+          "signature_id": 1651449,
+          "id": 495745926,
+          "push_timestamp": 1530097540,
+          "job_id": 185143305,
+          "datetime": "2018-06-27T11:05:40.000Z"
+        },
+        {
+          "push_id": 351308,
+          "value": 577.39,
+          "signature_id": 1651449,
+          "id": 496242519,
+          "push_timestamp": 1530137129,
+          "job_id": 185267258,
+          "datetime": "2018-06-27T22:05:29.000Z"
+        },
+        {
+          "push_id": 351309,
+          "value": 566.55,
+          "signature_id": 1651449,
+          "id": 496255804,
+          "push_timestamp": 1530137288,
+          "job_id": 185270168,
+          "datetime": "2018-06-27T22:08:08.000Z"
+        },
+        {
+          "push_id": 351474,
+          "value": 564.04,
+          "signature_id": 1651449,
+          "id": 496496969,
+          "push_timestamp": 1530179042,
+          "job_id": 185340374,
+          "datetime": "2018-06-28T09:44:02.000Z"
+        },
+        {
+          "push_id": 351482,
+          "value": 563.61,
+          "signature_id": 1651449,
+          "id": 496517860,
+          "push_timestamp": 1530180318,
+          "job_id": 185345944,
+          "datetime": "2018-06-28T10:05:18.000Z"
+        }
+      ]
+    }
+  }
+}

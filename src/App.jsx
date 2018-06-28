@@ -1,20 +1,16 @@
 import { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import './App.css';
-import ListSuites from './components/list_suites';
+import ListSuites from './components/listSuites';
+import PlotSuite from './components/plotSuite';
 
-const DEFAULT_BENCHMARKS = [
-  'ARES6',
-  'JetStream',
-  'motionmark_htmlsuite',
-  'motionmark_animometer',
-];
+const DEFAULT_BENCHMARKS = ['ARES6', 'JetStream', 'motionmark_htmlsuite', 'motionmark_animometer'];
 
 export default class App extends Component {
   state = {
     hasError: undefined,
     configuration: {
-      linux64: DEFAULT_BENCHMARKS,
+      linux64: DEFAULT_BENCHMARKS + ['dromaeo_dom'],
       'windows7-32': DEFAULT_BENCHMARKS,
       'windows10-64': DEFAULT_BENCHMARKS,
     },
@@ -32,12 +28,12 @@ export default class App extends Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    const { configuration } = this.state;
-
     return (
       <div>
         <Link to="/" href="/">Home</Link>
-        <ListSuites configuration={configuration} />
+        <ListSuites configuration={this.state.configuration} />
+        <hr />
+        <Route path="/:platform/:suite" render={PlotSuite} />
       </div>
     );
   }
