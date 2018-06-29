@@ -1,2 +1,5 @@
 # perf-goggles
-perf-goggles is a prototype to visualize sub-benchmarks over time. Some performance benchmarks that we track as an aggregate value, however, we need to track each sub-benchmark over time.
+[![Build Status](https://travis-ci.org/mozilla-frontend-infra/perf-goggles.svg?branch=master)](https://travis-ci.org/mozilla-frontend-infra/perf-goggles)
+[![Coverage Status](https://coveralls.io/repos/github/mozilla-frontend-infra/perf-goggles/badge.svg?branch=coverage)](https://coveralls.io/github/mozilla-frontend-infra/perf-goggles?branch=coverage)
+
+`perf-goggles` is a package (soon) to fetch [Perfherder](https://wiki.mozilla.org/EngineeringProductivity/Projects/Perfherder) data.
