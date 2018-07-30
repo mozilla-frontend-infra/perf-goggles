@@ -1,9 +1,9 @@
 {
-  "perfherderUrl": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,1661255,1,1&series=mozilla-central,1661256,1,1&series=mozilla-central,1661257,1,1&series=mozilla-central,1661258,1,1&series=mozilla-central,1661259,1,1&series=mozilla-central,1661260,1,1&series=mozilla-central,1661261,1,1&series=mozilla-central,1661262,1,1&series=mozilla-central,1661263,1,1&series=mozilla-central,1661264,1,1&series=mozilla-central,1661265,1,1&series=mozilla-central,1661266,1,1&series=mozilla-central,1661267,1,1&series=mozilla-central,1661268,1,1&series=mozilla-central,1661269,1,1&series=mozilla-central,1661270,1,1&series=mozilla-central,1661271,1,1&series=mozilla-central,1661272,1,1&series=mozilla-central,1661273,1,1&series=mozilla-central,1661274,1,1&series=mozilla-central,1661275,1,1&series=mozilla-central,1661276,1,1&series=mozilla-central,1661277,1,1&series=mozilla-central,1661278,1,1&series=mozilla-central,1661279,1,1&series=mozilla-central,1661280,1,1&series=mozilla-central,1661281,1,1&series=mozilla-central,1661282,1,1&series=mozilla-central,1661283,1,1&series=mozilla-central,1661284,1,1&series=mozilla-central,1661285,1,1&series=mozilla-central,1661286,1,1&series=mozilla-central,1661287,1,1&series=mozilla-central,1661288,1,1&series=mozilla-central,1661289,1,1&series=mozilla-central,1661290,1,1&series=mozilla-central,1661291,1,1&series=mozilla-central,1661292,1,1&series=mozilla-central,1661293,1,1&series=mozilla-central,1661294,1,1",
+  "perfherderUrl": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,1661255,1,1&series=mozilla-central,1661256,1,1&series=mozilla-central,1661257,1,1&series=mozilla-central,1661258,1,1&series=mozilla-central,1661259,1,1&series=mozilla-central,1661260,1,1&series=mozilla-central,1661261,1,1&series=mozilla-central,1661262,1,1&series=mozilla-central,1661263,1,1&series=mozilla-central,1661264,1,1&series=mozilla-central,1661265,1,1&series=mozilla-central,1661266,1,1&series=mozilla-central,1661267,1,1&series=mozilla-central,1661268,1,1&series=mozilla-central,1661269,1,1&series=mozilla-central,1661270,1,1&series=mozilla-central,1661271,1,1&series=mozilla-central,1661272,1,1&series=mozilla-central,1661273,1,1&series=mozilla-central,1661274,1,1&series=mozilla-central,1661275,1,1&series=mozilla-central,1661276,1,1&series=mozilla-central,1661277,1,1&series=mozilla-central,1661278,1,1&series=mozilla-central,1661279,1,1&series=mozilla-central,1661280,1,1&series=mozilla-central,1661281,1,1&series=mozilla-central,1661282,1,1&series=mozilla-central,1661283,1,1&series=mozilla-central,1661284,1,1&series=mozilla-central,1661285,1,1&series=mozilla-central,1661286,1,1&series=mozilla-central,1661287,1,1&series=mozilla-central,1661288,1,1&series=mozilla-central,1661289,1,1&series=mozilla-central,1661290,1,1&series=mozilla-central,1661291,1,1&series=mozilla-central,1661292,1,1&series=mozilla-central,1661293,1,1&series=mozilla-central,1661294,1,1",
   "data": {
     "c78831002f530881442e59c58e3369cd3da07c05": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,c78831002f530881442e59c58e3369cd3da07c05,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,c78831002f530881442e59c58e3369cd3da07c05,1,1",
         "id": 1661263,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -121,7 +121,7 @@
     },
     "d66256f1b98be529b549e3037b975f38bdb238f9": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,d66256f1b98be529b549e3037b975f38bdb238f9,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,d66256f1b98be529b549e3037b975f38bdb238f9,1,1",
         "id": 1661276,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -239,7 +239,7 @@
     },
     "459a037bc1d369810db6454e470f250c60e94a60": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,459a037bc1d369810db6454e470f250c60e94a60,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,459a037bc1d369810db6454e470f250c60e94a60,1,1",
         "id": 1661261,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -357,7 +357,7 @@
     },
     "52cb63fd24286c01a5f4be8c8b887cf1daf2672b": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,52cb63fd24286c01a5f4be8c8b887cf1daf2672b,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,52cb63fd24286c01a5f4be8c8b887cf1daf2672b,1,1",
         "id": 1661285,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -475,7 +475,7 @@
     },
     "bb66731a3c3cddca31ed228ae63696bd98b7b21a": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,bb66731a3c3cddca31ed228ae63696bd98b7b21a,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,bb66731a3c3cddca31ed228ae63696bd98b7b21a,1,1",
         "id": 1661287,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -593,7 +593,7 @@
     },
     "4655da1de2dad10f6c65ebf83054d280e6321c37": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,4655da1de2dad10f6c65ebf83054d280e6321c37,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,4655da1de2dad10f6c65ebf83054d280e6321c37,1,1",
         "id": 1661260,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -711,7 +711,7 @@
     },
     "79df0c3976a4f6abb7c341286dc57cee8eaf2bfb": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,79df0c3976a4f6abb7c341286dc57cee8eaf2bfb,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,79df0c3976a4f6abb7c341286dc57cee8eaf2bfb,1,1",
         "id": 1661270,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -829,7 +829,7 @@
     },
     "011b5eb2735ee55588bb4a18f0a5948041862877": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,011b5eb2735ee55588bb4a18f0a5948041862877,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,011b5eb2735ee55588bb4a18f0a5948041862877,1,1",
         "id": 1661283,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -947,7 +947,7 @@
     },
     "7b66bf1704d2c21b605fa348fa3b9578a763ccd9": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,7b66bf1704d2c21b605fa348fa3b9578a763ccd9,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,7b66bf1704d2c21b605fa348fa3b9578a763ccd9,1,1",
         "id": 1661272,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -1065,7 +1065,7 @@
     },
     "28486d5f17e538a6df8c68a7567ced6b5f97d2ed": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,28486d5f17e538a6df8c68a7567ced6b5f97d2ed,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,28486d5f17e538a6df8c68a7567ced6b5f97d2ed,1,1",
         "id": 1661284,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -1183,7 +1183,7 @@
     },
     "09b012fbf6ef6021a5d7d974b56492be6639e182": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,09b012fbf6ef6021a5d7d974b56492be6639e182,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,09b012fbf6ef6021a5d7d974b56492be6639e182,1,1",
         "id": 1661257,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -1301,7 +1301,7 @@
     },
     "df8dc061a90e118011bc6f0fb5f161c1c0ed5d98": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,df8dc061a90e118011bc6f0fb5f161c1c0ed5d98,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,df8dc061a90e118011bc6f0fb5f161c1c0ed5d98,1,1",
         "id": 1661274,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -1419,7 +1419,7 @@
     },
     "a7bc2ac3bb9f283adb757c4e3ac81dd87241888f": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,a7bc2ac3bb9f283adb757c4e3ac81dd87241888f,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,a7bc2ac3bb9f283adb757c4e3ac81dd87241888f,1,1",
         "id": 1661291,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -1537,7 +1537,7 @@
     },
     "6557a4b9cd9c68319c81607997a7856b9346f7a6": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,6557a4b9cd9c68319c81607997a7856b9346f7a6,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,6557a4b9cd9c68319c81607997a7856b9346f7a6,1,1",
         "id": 1661288,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -1655,7 +1655,7 @@
     },
     "cc17f888984895a54042f85a13a58293bc6adbb5": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,cc17f888984895a54042f85a13a58293bc6adbb5,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,cc17f888984895a54042f85a13a58293bc6adbb5,1,1",
         "id": 1661267,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -1773,7 +1773,7 @@
     },
     "25ad92f64bc2e8307bac590bcf070e87c9fb930e": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,25ad92f64bc2e8307bac590bcf070e87c9fb930e,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,25ad92f64bc2e8307bac590bcf070e87c9fb930e,1,1",
         "id": 1661294,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -1891,7 +1891,7 @@
     },
     "b923326fcc256b39d7e2db683058c353a16929d3": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,b923326fcc256b39d7e2db683058c353a16929d3,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,b923326fcc256b39d7e2db683058c353a16929d3,1,1",
         "id": 1661275,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -2009,7 +2009,7 @@
     },
     "07b328a885ebcf9231210ce8c11813b1f7eab821": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,07b328a885ebcf9231210ce8c11813b1f7eab821,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,07b328a885ebcf9231210ce8c11813b1f7eab821,1,1",
         "id": 1661259,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -2127,7 +2127,7 @@
     },
     "531a3a95b263d26a5f69e23e1c7d821d0f92f6f5": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,531a3a95b263d26a5f69e23e1c7d821d0f92f6f5,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,531a3a95b263d26a5f69e23e1c7d821d0f92f6f5,1,1",
         "id": 1661277,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -2245,7 +2245,7 @@
     },
     "4cc073fadff941731a7dd83e2465b755727b71db": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,4cc073fadff941731a7dd83e2465b755727b71db,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,4cc073fadff941731a7dd83e2465b755727b71db,1,1",
         "id": 1661292,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -2363,7 +2363,7 @@
     },
     "4cc843ea3d0792543bce4172bd567aa11654aa6a": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,4cc843ea3d0792543bce4172bd567aa11654aa6a,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,4cc843ea3d0792543bce4172bd567aa11654aa6a,1,1",
         "id": 1661279,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -2481,7 +2481,7 @@
     },
     "274f708eb74499ac2a663d93de57cbae884cc254": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,274f708eb74499ac2a663d93de57cbae884cc254,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,274f708eb74499ac2a663d93de57cbae884cc254,1,1",
         "id": 1661256,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -2599,7 +2599,7 @@
     },
     "99f137ed71cc5a0c21619a5304361d428110095c": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,99f137ed71cc5a0c21619a5304361d428110095c,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,99f137ed71cc5a0c21619a5304361d428110095c,1,1",
         "id": 1661282,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -2717,7 +2717,7 @@
     },
     "fb22bf47e7c36379790ebe721b85e97ef5a67ea3": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,fb22bf47e7c36379790ebe721b85e97ef5a67ea3,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,fb22bf47e7c36379790ebe721b85e97ef5a67ea3,1,1",
         "id": 1661293,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -2835,7 +2835,7 @@
     },
     "8987e5d4468e12a9d59441743ff3315dda5607b2": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,8987e5d4468e12a9d59441743ff3315dda5607b2,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,8987e5d4468e12a9d59441743ff3315dda5607b2,1,1",
         "id": 1661290,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -2953,7 +2953,7 @@
     },
     "a96b808a09259e21e5d29aa9af78f7689d505239": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,a96b808a09259e21e5d29aa9af78f7689d505239,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,a96b808a09259e21e5d29aa9af78f7689d505239,1,1",
         "id": 1661269,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -3071,7 +3071,7 @@
     },
     "beca772019a1123828591314298e8a90ba740d62": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,beca772019a1123828591314298e8a90ba740d62,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,beca772019a1123828591314298e8a90ba740d62,1,1",
         "id": 1661281,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -3189,7 +3189,7 @@
     },
     "db3f0e40db9f2fa6c73427e0fadeba33bd3bc3f5": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,db3f0e40db9f2fa6c73427e0fadeba33bd3bc3f5,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,db3f0e40db9f2fa6c73427e0fadeba33bd3bc3f5,1,1",
         "id": 1661278,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -3307,7 +3307,7 @@
     },
     "0460285604d8568542ea9a09a4a7191ab40d9028": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,0460285604d8568542ea9a09a4a7191ab40d9028,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,0460285604d8568542ea9a09a4a7191ab40d9028,1,1",
         "id": 1661266,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -3425,7 +3425,7 @@
     },
     "931fc0e8fac7617387d745212c3f7598d7c5b2cb": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,931fc0e8fac7617387d745212c3f7598d7c5b2cb,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,931fc0e8fac7617387d745212c3f7598d7c5b2cb,1,1",
         "id": 1661258,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -3543,7 +3543,7 @@
     },
     "0cce4a9ca11546ffc980f308927e84665e096a6c": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,0cce4a9ca11546ffc980f308927e84665e096a6c,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,0cce4a9ca11546ffc980f308927e84665e096a6c,1,1",
         "id": 1661271,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -3661,7 +3661,7 @@
     },
     "9ee84767facb9dbbafb1f443063bdd298f1768fe": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,9ee84767facb9dbbafb1f443063bdd298f1768fe,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,9ee84767facb9dbbafb1f443063bdd298f1768fe,1,1",
         "id": 1661289,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -3779,7 +3779,7 @@
     },
     "be38187c0ed69420b80d79d0e16cdf19028785a5": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,be38187c0ed69420b80d79d0e16cdf19028785a5,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,be38187c0ed69420b80d79d0e16cdf19028785a5,1,1",
         "id": 1661273,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -3897,7 +3897,7 @@
     },
     "6c529ad10d051a8b3b801f11fe38145122e10444": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,6c529ad10d051a8b3b801f11fe38145122e10444,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,6c529ad10d051a8b3b801f11fe38145122e10444,1,1",
         "id": 1661280,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -4015,7 +4015,7 @@
     },
     "50a140f04c5b65bd63fce3714523b225f31975ff": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,50a140f04c5b65bd63fce3714523b225f31975ff,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,50a140f04c5b65bd63fce3714523b225f31975ff,1,1",
         "id": 1661262,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -4133,7 +4133,7 @@
     },
     "46e5900b911849853c4619293de8341a84bf5903": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,46e5900b911849853c4619293de8341a84bf5903,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,46e5900b911849853c4619293de8341a84bf5903,1,1",
         "id": 1661264,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -4251,7 +4251,7 @@
     },
     "aa690141721251a97e28d6815a2f6ca8ad9eadb8": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,aa690141721251a97e28d6815a2f6ca8ad9eadb8,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,aa690141721251a97e28d6815a2f6ca8ad9eadb8,1,1",
         "id": 1661268,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -4369,7 +4369,7 @@
     },
     "55dfcc8f17ec8522262b26e314546f91d5461e74": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,55dfcc8f17ec8522262b26e314546f91d5461e74,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,55dfcc8f17ec8522262b26e314546f91d5461e74,1,1",
         "id": 1661265,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -4487,7 +4487,7 @@
     },
     "2a9b5c767f102a34c0d80e219865821f6e1c397b": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,2a9b5c767f102a34c0d80e219865821f6e1c397b,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,2a9b5c767f102a34c0d80e219865821f6e1c397b,1,1",
         "id": 1661286,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
@@ -4605,7 +4605,7 @@
     },
     "57367d367374043ff7db759b99d017cbc55deaa5": {
       "meta": {
-        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=7776000&series=mozilla-central,57367d367374043ff7db759b99d017cbc55deaa5,1,1",
+        "url": "https://treeherder.mozilla.org/perf.html#/graphs?timerange=1209600&series=mozilla-central,57367d367374043ff7db759b99d017cbc55deaa5,1,1",
         "id": 1661255,
         "option_collection_hash": "f69e1b00908837bf0550250abb1645014317e8ec",
         "framework_id": 1,
