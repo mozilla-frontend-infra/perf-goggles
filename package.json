@@ -1,6 +1,6 @@
 {
   "name": "@mozilla-frontend-infra/perf-goggles",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "build/index.js",
   "keywords": [
     "mozilla",
@@ -15,11 +15,19 @@
     "lint": "neutrino lint",
     "test": "neutrino test",
     "coverage": "nyc -r lcov -r text yarn test",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "precommit": "lint-staged",
+    "publish-to-npm": "yarn build && npm publish --access public --registry https://registry.npmjs.org",
+    "publish-to-verdaccio": "yarn build && npm publish --registry http://localhost:4873"
   },
   "nyc": {
     "include": [
       "src/**"
+    ]
+  },
+  "lint-staged": {
+    "*.js*": [
+      "neutrino lint"
     ]
   },
   "devDependencies": {
@@ -28,12 +36,14 @@
     "@neutrinojs/mocha": "^8.3.0",
     "coveralls": "^3.0.1",
     "fetch-mock": "^6.4.3",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
     "neutrino": "^8.3.0",
-    "node-fetch": "^2.1.2",
     "nyc": "^12.0.2"
   },
   "dependencies": {
-    "lodash": "^4.17.10",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash.isequal": "^4.5.0",
     "query-string": "^6.1.0"
   },
   "description": "[![Build Status](https://travis-ci.org/mozilla-frontend-infra/perf-goggles.svg?branch=master)](https://travis-ci.org/mozilla-frontend-infra/perf-goggles) [![Coverage Status](https://coveralls.io/repos/github/mozilla-frontend-infra/perf-goggles/badge.svg?branch=coverage)](https://coveralls.io/github/mozilla-frontend-infra/perf-goggles?branch=coverage)",
