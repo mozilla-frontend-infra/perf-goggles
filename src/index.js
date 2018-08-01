@@ -1,4 +1,4 @@
-/* global fetch */
+import "isomorphic-fetch";
 import { isEqual } from 'lodash';
 import { stringify } from 'query-string';
 
