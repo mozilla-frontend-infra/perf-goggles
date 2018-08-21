@@ -108,7 +108,7 @@ const signaturesForPlatformSuite = async (frameworkId, platform, suite) => {
   return filteredSignatures;
 };
 
-const findParentSignatureHash = (
+const findParentSignatureInfo = (
   signatures,
   options,
   option = 'pgo',
@@ -121,10 +121,10 @@ const findParentSignatureHash = (
     if (optionCollection && optionCollection.includes(option)) {
       if (extraOptions && extraOptions.length > 0) {
         if (isEqual(signature.extra_options, extraOptions)) {
-          result.push(signature.parentSignatureHash);
+          result.push(signature);
         }
       } else {
-        result.push(signature.parentSignatureHash);
+        result.push(signature);
       }
     }
   });
@@ -136,12 +136,12 @@ const findParentSignatureHash = (
   return result[0];
 };
 
-export const parentSignatureHash = async (frameworkId, platform, suite, option, extraOptions) => {
+export const parentSignatureInfo = async (frameworkId, platform, suite, option, extraOptions) => {
   const [signatures, options] = await Promise.all([
     signaturesForPlatformSuite(frameworkId, platform, suite, option),
     treeherderOptions(),
   ]);
-  return findParentSignatureHash(signatures, options, option, extraOptions);
+  return findParentSignatureInfo(signatures, options, option, extraOptions);
 };
 
 const prepareData = async (frameworkId, subtestsInfo) => {
@@ -170,12 +170,37 @@ const prepareData = async (frameworkId, subtestsInfo) => {
 };
 
 export const subbenchmarksData = async (frameworkId, platform, suite, option, extraOptions) => {
-  const parentHash = await parentSignatureHash(frameworkId, platform, suite, option, extraOptions);
-  if (!parentHash) {
+  const parentInfo = await parentSignatureInfo(frameworkId, platform, suite, option, extraOptions);
+  if (!parentInfo) {
     return {};
   }
-  const subtests = await querySubtestsAssociatedToParent(parentHash);
+  const subtests = await querySubtestsAssociatedToParent(parentInfo.parentSignatureHash);
   return prepareData(frameworkId, subtests);
 };
 
-export default subbenchmarksData;
+export const fetchBenchmarkData = async (frameworkId, platform, suite, option, extraOptions) => {
+  const parentInfo = await parentSignatureInfo(frameworkId, platform, suite, option, extraOptions);
+  if (!parentInfo) {
+    return {};
+  }
+  const perfherderUrl = perherderGraphUrl(frameworkId, [parentInfo.id], platform);
+  // Each data point takes the form of:
+  // {job_id: 162620134, signature_id: 1659462, id: 414057864, push_id: 306862, value: 54.89 }
+  const dataPoints = await fetchPerfData(frameworkId, [parentInfo.id]);
+  // This data structure is to resemble the one used by subbenchmarks
+  return {
+    data: {
+      [parentInfo.parentSignatureHash]: {
+        data: dataPoints[parentInfo.parentSignatureHash].map(datum => ({
+          datetime: new Date(datum.push_timestamp * 1000),
+          ...datum,
+        })),
+        meta: {
+          url: perfherderUrl,
+          ...parentInfo,
+        },
+      },
+    },
+    perfherderUrl,
+  };
+};
