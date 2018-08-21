@@ -1,9 +1,10 @@
 /* global describe it */
 import fetchMock from 'fetch-mock';
 import {
-  parentSignatureHash,
-  signaturesUrl,
+  fetchBenchmarkData,
+  parentSignatureInfo,
   perfDataUrls,
+  signaturesUrl,
   subbenchmarksData,
   TREEHERDER,
 } from '../src';
@@ -15,6 +16,9 @@ const LINUX64_SIGNATURES = require('./mocks/linux64/signaturesNoSubtests');
 const LINUX64_JETSTREAM_DATA = require('./mocks/linux64/JetStream/data');
 const LINUX64_JETSTREAM_SUBTESTS = require('./mocks/linux64/JetStream/subtests');
 const LINUX64_JETSTREAM_EXPECTED_DATA = require('./mocks/linux64/JetStream/expected');
+const WIN7_SIGNATURES = require('./mocks/win7/signaturesNoSubtests');
+const WIN7_MMA_DATA = require('./mocks/win7/MotionMarkAnimometer/data');
+const WIN7_MMA_EXPECTED_DATA = require('./mocks/win7/MotionMarkAnimometer/expected');
 const WIN10_SIGNATURES = require('./mocks/win10/signaturesNoSubtests');
 const WIN10_MMA_SUBTESTS = require('./mocks/win10/MotionMarkAnimometer/subtests');
 const WIN10_MMA_DATA = require('./mocks/win10/MotionMarkAnimometer/data');
@@ -48,23 +52,23 @@ describe('Talos', () => {
         1661275, 1661276, 1661277, 1661278, 1661279, 1661280, 1661281, 1661282, 1661283, 1661284,
         1661285, 1661286, 1661287, 1661288, 1661289, 1661290, 1661291, 1661292, 1661293, 1661294,
       ];
-      const parentHash = '46ca6eb015193051661117a30bd39e6f25ee4744';
-      fetchMock.get(`${signaturesUrl()}?parent_signature=${parentHash}`, LINUX64_JETSTREAM_SUBTESTS);
+      const parentSignatureHash = '46ca6eb015193051661117a30bd39e6f25ee4744';
+      fetchMock.get(`${signaturesUrl()}?parent_signature=${parentSignatureHash}`, LINUX64_JETSTREAM_SUBTESTS);
       fetchMock.get(perfDataUrls(frameworkId, signatureIds)[0], LINUX64_JETSTREAM_DATA);
 
       it('should find Linux64 JetStream pgo signature hash', async () => {
-        const signature = await parentSignatureHash(frameworkId, platform, 'JetStream', 'pgo', extraOptions);
-        assert.equal(signature, '46ca6eb015193051661117a30bd39e6f25ee4744');
+        const parentInfo = await parentSignatureInfo(frameworkId, platform, 'JetStream', 'pgo', extraOptions);
+        assert.equal(parentInfo.parentSignatureHash, '46ca6eb015193051661117a30bd39e6f25ee4744');
       });
 
       it('should find Linux64 JetStream opt signature hash', async () => {
-        const signature = await parentSignatureHash(frameworkId, platform, 'JetStream', 'opt', extraOptions);
-        assert.equal(signature, '4e714a801f334b874de0aeda22df6a21b8f40500');
+        const parentInfo = await parentSignatureInfo(frameworkId, platform, 'JetStream', 'opt', extraOptions);
+        assert.equal(parentInfo.parentSignatureHash, '4e714a801f334b874de0aeda22df6a21b8f40500');
       });
 
       it('should not find Linux64 JetStream debug signature hash', async () => {
-        const signature = await parentSignatureHash(frameworkId, platform, 'JetStream', 'debug', extraOptions);
-        assert.equal(signature, undefined);
+        const parentInfo = await parentSignatureInfo(frameworkId, platform, 'JetStream', 'debug', extraOptions);
+        assert.equal(parentInfo, undefined);
       });
 
       it('should find Linux64 JetStream pgo subtests data', async () => {
@@ -106,6 +110,22 @@ describe('Raptor', () => {
       it('the perfDataUrls should match', async () => {
         const urls = perfDataUrls(frameworkId, signatureIds);
         assert.deepEqual(urls, MAC_STYLEBENCH_URLS);
+      });
+    });
+  });
+
+  describe('Windows 7 32-bit', () => {
+    const platform = 'windows7-32';
+    fetchMock.get(`${signaturesUrl()}?framework=${frameworkId}&platform=${platform}&subtests=0`, WIN7_SIGNATURES);
+
+    describe('MotionMarkAnimometer main score', () => {
+      const suite = 'raptor-motionmark-animometer-firefox';
+
+      fetchMock.get(perfDataUrls(frameworkId, ['1713376'])[0], WIN7_MMA_DATA);
+
+      it('The benchmark data should match', async () => {
+        const data = await fetchBenchmarkData(frameworkId, platform, suite, 'opt');
+        assert.deepEqual(data, downcastDatetimesToStrings(WIN7_MMA_EXPECTED_DATA));
       });
     });
   });
