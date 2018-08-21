@@ -14,23 +14,40 @@ export const dataPointsEndpointUrl = (project = PROJECT) => (
   `${TREEHERDER}/api/project/${project}/performance/data/`
 );
 
-export const subtestsPerfDataUrl =
+export const perfDataUrls =
   (frameworkId, signatureIds, project = PROJECT, interval = DEFAULT_TIMERANGE) => {
     const url = dataPointsEndpointUrl(project);
-    const queryParams = stringify({
+    const baseParams = stringify({
       framework: frameworkId,
       interval,
-      signature_id: signatureIds,
     });
-    return `${url}?${queryParams}`;
+    const urls = [];
+    for (let i = 0; i < (signatureIds.length) / 100; i += 1) {
+      const signaturesParams = stringify({
+        signature_id: signatureIds.slice(i * 100, ((i + 1) * 100)),
+      });
+      urls.push(`${url}?${baseParams}&${signaturesParams}`);
+    }
+    return urls;
   };
 
 // The data contains an object where each key represents a subtest
 // Each data point of that subtest takes the form of:
 // {job_id: 162620134, signature_id: 1659462, id: 414057864, push_id: 306862, value: 54.89 }
-const fetchPerfDataForSubtests = async (frameworkId, signatureIds) => {
-  const response = await fetch(subtestsPerfDataUrl(frameworkId, signatureIds));
-  return response.json();
+const fetchPerfData = async (frameworkId, signatureIds) => {
+  const dataPoints = {};
+  await Promise.all(perfDataUrls(frameworkId, signatureIds)
+    .map(async (url) => {
+      const data = await (await fetch(url)).json();
+      Object.keys(data).forEach((hash) => {
+        if (!dataPoints[hash]) {
+          dataPoints[hash] = data[hash];
+        } else {
+          dataPoints[hash].concat(data[hash]);
+        }
+      });
+    }));
+  return dataPoints;
 };
 
 const perherderGraphUrl =
@@ -134,7 +151,7 @@ const prepareData = async (frameworkId, subtestsInfo) => {
     perfherderUrl: perherderGraphUrl(frameworkId, signatureIds),
     data: {},
   };
-  const dataPoints = await fetchPerfDataForSubtests(frameworkId, signatureIds);
+  const dataPoints = await fetchPerfData(frameworkId, signatureIds);
 
   Object.keys(dataPoints).forEach((subtestHash) => {
     data.data[subtestHash] = {

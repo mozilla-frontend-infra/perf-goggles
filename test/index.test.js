@@ -3,10 +3,12 @@ import fetchMock from 'fetch-mock';
 import {
   parentSignatureHash,
   signaturesUrl,
-  subtestsPerfDataUrl,
+  perfDataUrls,
   subbenchmarksData,
   TREEHERDER,
 } from '../src';
+import MAC_STYLEBENCH_SIGNATURES from './mocks/mac/StyleBench/signatures';
+import MAC_STYLEBENCH_URLS from './mocks/mac/StyleBench/urls';
 
 const assert = require('assert');
 const LINUX64_SIGNATURES = require('./mocks/linux64/signaturesNoSubtests');
@@ -48,7 +50,7 @@ describe('Talos', () => {
       ];
       const parentHash = '46ca6eb015193051661117a30bd39e6f25ee4744';
       fetchMock.get(`${signaturesUrl()}?parent_signature=${parentHash}`, LINUX64_JETSTREAM_SUBTESTS);
-      fetchMock.get(subtestsPerfDataUrl(frameworkId, signatureIds), LINUX64_JETSTREAM_DATA);
+      fetchMock.get(perfDataUrls(frameworkId, signatureIds)[0], LINUX64_JETSTREAM_DATA);
 
       it('should find Linux64 JetStream pgo signature hash', async () => {
         const signature = await parentSignatureHash(frameworkId, platform, 'JetStream', 'pgo', extraOptions);
@@ -87,12 +89,23 @@ describe('Raptor', () => {
       ];
       const parentHash = '9ad671fb568a5b3027af35b5d42fc6dd385f25ed';
       fetchMock.get(`${signaturesUrl()}?parent_signature=${parentHash}`, WIN10_MMA_SUBTESTS);
-      fetchMock.get(subtestsPerfDataUrl(frameworkId, signatureIds), WIN10_MMA_DATA);
+      fetchMock.get(perfDataUrls(frameworkId, signatureIds)[0], WIN10_MMA_DATA);
 
       it('should find Windows 10 MotionMarkAnimometer pgo subtests data', async () => {
         const data = await subbenchmarksData(frameworkId, platform, 'raptor-motionmark-animometer-firefox', 'pgo');
         const modifiedExpectedData = downcastDatetimesToStrings(WIN10_MMA_EXPECTED_DATA);
         assert.deepEqual(data, modifiedExpectedData);
+      });
+    });
+  });
+
+  describe('Mac OS X', () => {
+    describe('StyleBench', () => {
+      const signatureIds = MAC_STYLEBENCH_SIGNATURES;
+
+      it('the perfDataUrls should match', async () => {
+        const urls = perfDataUrls(frameworkId, signatureIds);
+        assert.deepEqual(urls, MAC_STYLEBENCH_URLS);
       });
     });
   });
