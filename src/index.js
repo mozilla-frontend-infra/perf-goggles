@@ -15,7 +15,7 @@ export const dataPointsEndpointUrl = (project = PROJECT) => (
 );
 
 export const perfDataUrls =
-  (frameworkId, signatureIds, project = PROJECT, interval = DEFAULT_TIMERANGE) => {
+  (frameworkId, signatureIds, interval = DEFAULT_TIMERANGE, project = PROJECT) => {
     const url = dataPointsEndpointUrl(project);
     const baseParams = stringify({
       framework: frameworkId,
@@ -34,9 +34,9 @@ export const perfDataUrls =
 // The data contains an object where each key represents a subtest
 // Each data point of that subtest takes the form of:
 // {job_id: 162620134, signature_id: 1659462, id: 414057864, push_id: 306862, value: 54.89 }
-const fetchPerfData = async (frameworkId, signatureIds) => {
+const fetchPerfData = async (frameworkId, signatureIds, timerange) => {
   const dataPoints = {};
-  await Promise.all(perfDataUrls(frameworkId, signatureIds)
+  await Promise.all(perfDataUrls(frameworkId, signatureIds, timerange)
     .map(async (url) => {
       const data = await (await fetch(url)).json();
       Object.keys(data).forEach((hash) => {
@@ -169,16 +169,20 @@ const prepareData = async (frameworkId, subtestsInfo) => {
   return data;
 };
 
-export const subbenchmarksData = async (frameworkId, platform, suite, option, extraOptions) => {
+export const subbenchmarksData = async (
+  frameworkId, platform, suite, option, extraOptions, timerange = DEFAULT_TIMERANGE,
+) => {
   const parentInfo = await parentSignatureInfo(frameworkId, platform, suite, option, extraOptions);
   if (!parentInfo) {
     return {};
   }
   const subtests = await querySubtestsAssociatedToParent(parentInfo.parentSignatureHash);
-  return prepareData(frameworkId, subtests);
+  return prepareData(frameworkId, subtests, timerange);
 };
 
-export const fetchBenchmarkData = async (frameworkId, platform, suite, option, extraOptions) => {
+export const fetchBenchmarkData = async (
+  frameworkId, platform, suite, option, extraOptions, timerange = DEFAULT_TIMERANGE,
+) => {
   const parentInfo = await parentSignatureInfo(frameworkId, platform, suite, option, extraOptions);
   if (!parentInfo) {
     return {};
@@ -186,7 +190,7 @@ export const fetchBenchmarkData = async (frameworkId, platform, suite, option, e
   const perfherderUrl = perherderGraphUrl(frameworkId, [parentInfo.id], platform);
   // Each data point takes the form of:
   // {job_id: 162620134, signature_id: 1659462, id: 414057864, push_id: 306862, value: 54.89 }
-  const dataPoints = await fetchPerfData(frameworkId, [parentInfo.id]);
+  const dataPoints = await fetchPerfData(frameworkId, [parentInfo.id], timerange);
   // This data structure is to resemble the one used by subbenchmarks
   return {
     data: {
