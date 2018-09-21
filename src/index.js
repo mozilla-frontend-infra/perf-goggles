@@ -10,16 +10,20 @@ export const signaturesUrl = (project = PROJECT) => (
   `${TREEHERDER}/api/project/${project}/performance/signatures/`
 );
 
-export const dataPointsEndpointUrl = (project = PROJECT) => (
+const dataPointsEndpointUrl = (project = PROJECT) => (
   `${TREEHERDER}/api/project/${project}/performance/data/`
 );
 
+const platformSuitesUrl = ({ frameworkId, platform, project }) => (
+  `${signaturesUrl(project)}?framework=${frameworkId}&platform=${platform}&subtests=0`
+);
+
 export const perfDataUrls =
-  (frameworkId, signatureIds, interval = DEFAULT_TIMERANGE, project = PROJECT) => {
+  ({ frameworkId, project }, signatureIds, timerange) => {
     const url = dataPointsEndpointUrl(project);
     const baseParams = stringify({
       framework: frameworkId,
-      interval,
+      interval: timerange,
     });
     const urls = [];
     for (let i = 0; i < (signatureIds.length) / 100; i += 1) {
@@ -31,29 +35,35 @@ export const perfDataUrls =
     return urls;
   };
 
+const tranformData = data =>
+  data.map(datum => ({
+    datetime: new Date(datum.push_timestamp * 1000),
+    ...datum,
+  }));
+
 // The data contains an object where each key represents a subtest
 // Each data point of that subtest takes the form of:
 // {job_id: 162620134, signature_id: 1659462, id: 414057864, push_id: 306862, value: 54.89 }
-const fetchPerfData = async (frameworkId, signatureIds, timerange) => {
+const fetchPerfData = async (seriesConfig, signatureIds, timerange) => {
   const dataPoints = {};
-  await Promise.all(perfDataUrls(frameworkId, signatureIds, timerange)
+  await Promise.all(perfDataUrls(seriesConfig, signatureIds, timerange)
     .map(async (url) => {
       const data = await (await fetch(url)).json();
       Object.keys(data).forEach((hash) => {
         if (!dataPoints[hash]) {
-          dataPoints[hash] = data[hash];
-        } else {
-          dataPoints[hash].concat(data[hash]);
+          dataPoints[hash] = [];
         }
+        dataPoints[hash] = dataPoints[hash].concat(tranformData(data[hash]));
       });
     }));
   return dataPoints;
 };
 
 const perherderGraphUrl =
-  (frameworkId, signatureIds, platform, project = PROJECT, timerange = DEFAULT_TIMERANGE) => {
+  ({ project, frameworkId }, signatureIds, timerange = DEFAULT_TIMERANGE) => {
     let baseDataUrl = `${TREEHERDER}/perf.html#/graphs?timerange=${timerange}`;
-    baseDataUrl += `&${signatureIds.sort().map(id => `series=${project},${id},1,${frameworkId}`).join('&')}`;
+    baseDataUrl += `&${signatureIds.sort().map(id =>
+      `series=${project},${id},1,${frameworkId}`).join('&')}`;
     return baseDataUrl;
   };
 
@@ -81,25 +91,25 @@ const treeherderOptions = async () => {
   return transformOptionCollectionHash(optionCollectionHash);
 };
 
-const queryPlatformSignaturesNoSubtests = async (frameworkId, platform) => {
-  const response = await fetch(`${signaturesUrl()}?framework=${frameworkId}&platform=${platform}&subtests=0`);
+const queryPlatformSignatures = async (seriesConfig) => {
+  const response = await fetch(platformSuitesUrl(seriesConfig));
   return response.json();
 };
 
-const querySubtestsAssociatedToParent = async (parentHash) => {
-  const response = await fetch(`${signaturesUrl()}?parent_signature=${parentHash}`);
+const querySubtests = async ({ project }, parentHash) => {
+  const response = await fetch(`${signaturesUrl(project)}?parent_signature=${parentHash}`);
   return response.json();
 };
 
-const signaturesForPlatformSuite = async (frameworkId, platform, suite) => {
-  const allPlatformSignatures = await queryPlatformSignaturesNoSubtests(frameworkId, platform);
+const signaturesForPlatformSuite = async (seriesConfig) => {
+  const allPlatformSignatures = await queryPlatformSignatures(seriesConfig);
   const filteredSignatures = Object.keys(allPlatformSignatures)
     .reduce((res, signatureHash) => {
       const jobSignature = allPlatformSignatures[signatureHash];
       // Jobs that have a .test property are subtests; This is due to polluted data.
       // For instance raptor-tp6-amazon-firefox would show an extra entry
       // with test === 'raptor-tp6-amazon-firefox-fnbpaint'
-      if (jobSignature.suite !== suite || jobSignature.test) {
+      if (jobSignature.suite !== seriesConfig.suite || jobSignature.test) {
         return res;
       }
       res[signatureHash] = {
@@ -111,12 +121,7 @@ const signaturesForPlatformSuite = async (frameworkId, platform, suite) => {
   return filteredSignatures;
 };
 
-const findParentSignatureInfo = (
-  signatures,
-  options,
-  option = 'pgo',
-  extraOptions,
-) => {
+const findParentSignatureInfo = ({ option = 'pgo', extraOptions }, signatures, options) => {
   const result = [];
   Object.keys(signatures).forEach((hash) => {
     const signature = signatures[hash];
@@ -139,33 +144,30 @@ const findParentSignatureInfo = (
   return result[0];
 };
 
-export const parentSignatureInfo = async (frameworkId, platform, suite, option, extraOptions) => {
+const parentSignatureInfo = async (seriesConfig) => {
   const [signatures, options] = await Promise.all([
-    signaturesForPlatformSuite(frameworkId, platform, suite, option),
-    treeherderOptions(),
+    signaturesForPlatformSuite(seriesConfig),
+    treeherderOptions(seriesConfig.project),
   ]);
-  return findParentSignatureInfo(signatures, options, option, extraOptions);
+  return findParentSignatureInfo(seriesConfig, signatures, options);
 };
 
-const prepareData = async (frameworkId, subtestsInfo) => {
+const prepareData = async (seriesConfig, subtestsInfo, timerange) => {
   const signatureIds = Object.values(subtestsInfo).map(v => v.id);
   const data = {
     // Link to Perfherder with all subtests
-    perfherderUrl: perherderGraphUrl(frameworkId, signatureIds),
+    perfherderUrl: perherderGraphUrl(seriesConfig, signatureIds),
     data: {},
   };
-  const dataPoints = await fetchPerfData(frameworkId, signatureIds);
+  const dataPoints = await fetchPerfData(seriesConfig, signatureIds, timerange);
 
   Object.keys(dataPoints).forEach((subtestHash) => {
     data.data[subtestHash] = {
+      data: dataPoints[subtestHash],
       meta: {
-        url: perherderGraphUrl(frameworkId, [subtestHash]),
+        url: perherderGraphUrl(seriesConfig, [subtestHash]),
         ...subtestsInfo[subtestHash], // Original object from Perfherder
       },
-      data: dataPoints[subtestHash].map(datum => ({
-        ...datum,
-        datetime: new Date(datum.push_timestamp * 1000),
-      })),
     };
   });
 
@@ -175,33 +177,46 @@ const prepareData = async (frameworkId, subtestsInfo) => {
 export const subbenchmarksData = async (
   frameworkId, platform, suite, option, extraOptions, timerange = DEFAULT_TIMERANGE,
 ) => {
-  const parentInfo = await parentSignatureInfo(frameworkId, platform, suite, option, extraOptions);
+  const seriesConfig = {
+    frameworkId,
+    platform,
+    suite,
+    option,
+    extraOptions,
+    project: PROJECT, // XXX: For now
+  };
+  const parentInfo = await parentSignatureInfo(seriesConfig);
   if (!parentInfo) {
     return {};
   }
-  const subtests = await querySubtestsAssociatedToParent(parentInfo.parentSignatureHash);
-  return prepareData(frameworkId, subtests, timerange);
+  const subtests = await querySubtests(seriesConfig, parentInfo.parentSignatureHash);
+  return prepareData(seriesConfig, subtests, timerange);
 };
 
 export const fetchBenchmarkData = async (
   frameworkId, platform, suite, option, extraOptions, timerange = DEFAULT_TIMERANGE,
 ) => {
-  const parentInfo = await parentSignatureInfo(frameworkId, platform, suite, option, extraOptions);
+  const seriesConfig = {
+    frameworkId,
+    platform,
+    suite,
+    option,
+    extraOptions,
+    project: PROJECT, // XXX: For now
+  };
+  const parentInfo = await parentSignatureInfo(seriesConfig);
   if (!parentInfo) {
     return {};
   }
-  const perfherderUrl = perherderGraphUrl(frameworkId, [parentInfo.id], platform);
+  const perfherderUrl = perherderGraphUrl(seriesConfig, [parentInfo.id]);
   // Each data point takes the form of:
   // {job_id: 162620134, signature_id: 1659462, id: 414057864, push_id: 306862, value: 54.89 }
-  const dataPoints = await fetchPerfData(frameworkId, [parentInfo.id], timerange);
+  const dataPoints = await fetchPerfData(seriesConfig, [parentInfo.id], timerange);
   // This data structure is to resemble the one used by subbenchmarks
   return {
     data: {
       [parentInfo.parentSignatureHash]: {
-        data: dataPoints[parentInfo.parentSignatureHash].map(datum => ({
-          datetime: new Date(datum.push_timestamp * 1000),
-          ...datum,
-        })),
+        data: dataPoints[parentInfo.parentSignatureHash],
         meta: {
           url: perfherderUrl,
           ...parentInfo,
