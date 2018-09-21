@@ -226,3 +226,20 @@ export const fetchBenchmarkData = async (
     perfherderUrl,
   };
 };
+
+// This function returns a simplified data structure
+const queryPerformanceData = async (seriesConfig, timerange = DEFAULT_TIMERANGE) => {
+  const parentInfo = await parentSignatureInfo(seriesConfig);
+  // XXX: Throw error instead
+  if (!parentInfo) {
+    return {};
+  }
+
+  const dataPoints = await fetchPerfData(seriesConfig, [parentInfo.id], timerange);
+  return {
+    data: dataPoints[parentInfo.parentSignatureHash],
+    meta: parentInfo,
+  };
+};
+
+export default queryPerformanceData;
