@@ -25,6 +25,8 @@ export const perfDataUrls =
       framework: frameworkId,
       interval: timerange,
     });
+    // To guarantee order for tests
+    signatureIds.sort();
     const urls = [];
     for (let i = 0; i < (signatureIds.length) / 100; i += 1) {
       const signaturesParams = stringify({
@@ -60,7 +62,7 @@ const fetchPerfData = async (seriesConfig, signatureIds, timerange) => {
 };
 
 const perherderGraphUrl =
-  ({ project, frameworkId }, signatureIds, timerange = DEFAULT_TIMERANGE) => {
+  ({ project = PROJECT, frameworkId }, signatureIds, timerange = DEFAULT_TIMERANGE) => {
     let baseDataUrl = `${TREEHERDER}/perf.html#/graphs?timerange=${timerange}`;
     baseDataUrl += `&${signatureIds.sort().map(id =>
       `series=${project},${id},1,${frameworkId}`).join('&')}`;
@@ -152,94 +154,50 @@ const parentSignatureInfo = async (seriesConfig) => {
   return findParentSignatureInfo(seriesConfig, signatures, options);
 };
 
-const prepareData = async (seriesConfig, subtestsInfo, timerange) => {
+const fetchSubtestsData = async (seriesConfig, subtestsInfo, timerange) => {
   const signatureIds = Object.values(subtestsInfo).map(v => v.id);
-  const data = {
-    // Link to Perfherder with all subtests
-    perfherderUrl: perherderGraphUrl(seriesConfig, signatureIds),
-    data: {},
-  };
+  const subtestsData = {};
   const dataPoints = await fetchPerfData(seriesConfig, signatureIds, timerange);
 
   Object.keys(dataPoints).forEach((subtestHash) => {
-    data.data[subtestHash] = {
+    subtestsData[subtestHash] = {
       data: dataPoints[subtestHash],
-      meta: {
-        url: perherderGraphUrl(seriesConfig, [subtestHash]),
-        ...subtestsInfo[subtestHash], // Original object from Perfherder
-      },
+      meta: subtestsInfo[subtestHash], // Original object from Perfherder
+      perfherderUrl: perherderGraphUrl(seriesConfig, [subtestHash]),
     };
   });
 
-  return data;
+  return subtestsData;
 };
 
-export const subbenchmarksData = async (
-  frameworkId, platform, suite, option, extraOptions, timerange = DEFAULT_TIMERANGE,
+export const queryPerformanceData = async (
+  seriesConfig,
+  includeSubtests = false,
+  timerange = DEFAULT_TIMERANGE,
 ) => {
-  const seriesConfig = {
-    frameworkId,
-    platform,
-    suite,
-    option,
-    extraOptions,
-    project: PROJECT, // XXX: For now
-  };
-  const parentInfo = await parentSignatureInfo(seriesConfig);
-  if (!parentInfo) {
-    return {};
-  }
-  const subtests = await querySubtests(seriesConfig, parentInfo.parentSignatureHash);
-  return prepareData(seriesConfig, subtests, timerange);
-};
-
-export const fetchBenchmarkData = async (
-  frameworkId, platform, suite, option, extraOptions, timerange = DEFAULT_TIMERANGE,
-) => {
-  const seriesConfig = {
-    frameworkId,
-    platform,
-    suite,
-    option,
-    extraOptions,
-    project: PROJECT, // XXX: For now
-  };
-  const parentInfo = await parentSignatureInfo(seriesConfig);
-  if (!parentInfo) {
-    return {};
-  }
-  const perfherderUrl = perherderGraphUrl(seriesConfig, [parentInfo.id]);
-  // Each data point takes the form of:
-  // {job_id: 162620134, signature_id: 1659462, id: 414057864, push_id: 306862, value: 54.89 }
-  const dataPoints = await fetchPerfData(seriesConfig, [parentInfo.id], timerange);
-  // This data structure is to resemble the one used by subbenchmarks
-  return {
-    data: {
-      [parentInfo.parentSignatureHash]: {
-        data: dataPoints[parentInfo.parentSignatureHash],
-        meta: {
-          url: perfherderUrl,
-          ...parentInfo,
-        },
-      },
-    },
-    perfherderUrl,
-  };
-};
-
-// This function returns a simplified data structure
-const queryPerformanceData = async (seriesConfig, timerange = DEFAULT_TIMERANGE) => {
   const parentInfo = await parentSignatureInfo(seriesConfig);
   // XXX: Throw error instead
   if (!parentInfo) {
     return {};
   }
+  let perfData = {};
+  if (!includeSubtests) {
+    const dataPoints = await fetchPerfData(seriesConfig, [parentInfo.id], timerange);
+    perfData = {
+      [parentInfo.parentSignatureHash]: {
+        data: dataPoints[parentInfo.parentSignatureHash],
+        meta: parentInfo,
+        perfherderUrl: perherderGraphUrl(seriesConfig, [parentInfo.id]),
+      },
+    };
+  } else {
+    const subtestsMeta = await querySubtests(seriesConfig, parentInfo.parentSignatureHash);
+    subtestsMeta[parentInfo.parentSignatureHash] = parentInfo;
+    const subtestsData = await fetchSubtestsData(seriesConfig, subtestsMeta, timerange);
+    Object.keys(subtestsData).forEach((hash) => { perfData[hash] = subtestsData[hash]; });
+  }
 
-  const dataPoints = await fetchPerfData(seriesConfig, [parentInfo.id], timerange);
-  return {
-    data: dataPoints[parentInfo.parentSignatureHash],
-    meta: parentInfo,
-  };
+  return perfData;
 };
 
 export default queryPerformanceData;
