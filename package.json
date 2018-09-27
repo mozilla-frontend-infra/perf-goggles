@@ -17,7 +17,7 @@
     "coverage": "nyc -r lcov -r text yarn test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "precommit": "lint-staged",
-    "publish-to-npm": "yarn build && npm publish --access public --registry https://registry.npmjs.org",
+    "prepare": "yarn build",
     "publish-to-verdaccio": "yarn build && npm publish --registry http://localhost:4873"
   },
   "nyc": {
