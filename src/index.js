@@ -108,10 +108,7 @@ const signaturesForPlatformSuite = async (seriesConfig) => {
   const filteredSignatures = Object.keys(allPlatformSignatures)
     .reduce((res, signatureHash) => {
       const jobSignature = allPlatformSignatures[signatureHash];
-      // Jobs that have a .test property are subtests; This is due to polluted data.
-      // For instance raptor-tp6-amazon-firefox would show an extra entry
-      // with test === 'raptor-tp6-amazon-firefox-fnbpaint'
-      if (jobSignature.suite !== seriesConfig.suite || jobSignature.test) {
+      if (jobSignature.suite !== seriesConfig.suite) {
         return res;
       }
       res[signatureHash] = {
