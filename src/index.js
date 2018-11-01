@@ -108,13 +108,15 @@ const signaturesForPlatformSuite = async (seriesConfig) => {
   const filteredSignatures = Object.keys(allPlatformSignatures)
     .reduce((res, signatureHash) => {
       const jobSignature = allPlatformSignatures[signatureHash];
-      if (jobSignature.suite !== seriesConfig.suite) {
-        return res;
+      if (
+        jobSignature.suite === seriesConfig.suite &&
+        (jobSignature.test !== jobSignature.suite && jobSignature.test === seriesConfig.test)
+      ) {
+        res[signatureHash] = {
+          parentSignatureHash: signatureHash,
+          ...jobSignature,
+        };
       }
-      res[signatureHash] = {
-        parentSignatureHash: signatureHash,
-        ...jobSignature,
-      };
       return res;
     }, {});
   return filteredSignatures;

@@ -17,10 +17,13 @@ const LINUX64_JETSTREAM_EXPECTED_DATA = require('./mocks/linux64/JetStream/expec
 const WIN7_SIGNATURES = require('./mocks/win7/signaturesNoSubtests');
 const WIN7_MMA_DATA = require('./mocks/win7/MotionMarkAnimometer/data');
 const WIN7_MMA_EXPECTED_DATA = require('./mocks/win7/MotionMarkAnimometer/expected');
-const WIN10_SIGNATURES = require('./mocks/win10/signaturesNoSubtests');
+const WIN10_RAPTOR_SIGNATURES = require('./mocks/win10/raptorSignaturesNoSubtests');
+const WIN10_TALOS_SIGNATURES = require('./mocks/win10/talosSignaturesNoSubtests');
 const WIN10_MMA_SUBTESTS = require('./mocks/win10/MotionMarkAnimometer/subtests');
 const WIN10_MMA_DATA = require('./mocks/win10/MotionMarkAnimometer/data');
 const WIN10_MMA_EXPECTED_DATA = require('./mocks/win10/MotionMarkAnimometer/expected');
+const WIN10_TP5O_DATA = require('./mocks/win10/Tp5o/data');
+const WIN10_TP5O_EXPECTED_DATA = require('./mocks/win10/Tp5o/expected');
 const OPTION_COLLECTION_HASHES = require('./mocks/optionCollectionHash');
 
 const PROJECT = 'mozilla-central';
@@ -39,22 +42,25 @@ const downcastDatetimesToStrings = (data) => {
 fetchMock.get(`${TREEHERDER}/api/optioncollectionhash/`, OPTION_COLLECTION_HASHES);
 
 describe('Talos', () => {
-  const seriesConfig = {
+  const TALOS_CONFIG = {
     extraOptions: ['e10s', 'stylo'],
     frameworkId: 1,
     option: 'pgo',
-    platform: 'linux64',
     project: PROJECT,
-    suite: 'JetStream',
   };
 
   describe('Linux64', () => {
+    const seriesConfig = {
+      platform: 'linux64',
+      ...TALOS_CONFIG,
+    };
     const { frameworkId, platform, project } = seriesConfig;
     fetchMock.get(
       `${signaturesUrl(project)}?framework=${frameworkId}&platform=${platform}&subtests=0`,
       LINUX64_SIGNATURES,
     );
-    describe('Jetstream', () => {
+    describe('Jetstream (with subtests)', () => {
+      seriesConfig.suite = 'JetStream';
       const signatureIds = [
         1661254, // The parental signature
         1661255, 1661256, 1661257, 1661258, 1661259, 1661260, 1661261, 1661262, 1661263, 1661264,
@@ -81,6 +87,30 @@ describe('Talos', () => {
       });
     });
   });
+  describe('Windows 10', () => {
+    const seriesConfig = {
+      platform: 'windows10-64',
+      ...TALOS_CONFIG,
+    };
+    const { frameworkId, platform, project } = seriesConfig;
+    fetchMock.get(
+      `${signaturesUrl(project)}?framework=${frameworkId}&platform=${platform}&subtests=0`,
+      WIN10_TALOS_SIGNATURES,
+    );
+    // The tp5o benchmark has an oddity where we have two versions; both
+    // of them have the same suite property, however, one of them does not have
+    // the test property. This could be some data polution on Perfherder
+    it('should find Windows 10 Tp5o pgo data', async () => {
+      seriesConfig.suite = 'tp5o';
+      fetchMock.get(
+        perfDataUrls(seriesConfig, [1538597], TIMERANGE)[0],
+        WIN10_TP5O_DATA,
+      );
+      const data = await queryPerformanceData(seriesConfig, false, TIMERANGE);
+      const modifiedExpectedData = downcastDatetimesToStrings(WIN10_TP5O_EXPECTED_DATA);
+      assert.deepEqual(data, modifiedExpectedData);
+    });
+  });
 });
 
 describe('Raptor', () => {
@@ -92,7 +122,7 @@ describe('Raptor', () => {
       platform: 'windows10-64',
     };
     const { frameworkId, platform, project } = seriesConfig;
-    fetchMock.get(`${signaturesUrl(project)}?framework=${frameworkId}&platform=${platform}&subtests=0`, WIN10_SIGNATURES);
+    fetchMock.get(`${signaturesUrl(project)}?framework=${frameworkId}&platform=${platform}&subtests=0`, WIN10_RAPTOR_SIGNATURES);
 
     describe('MotionMarkAnimometer', () => {
       seriesConfig.suite = 'raptor-motionmark-animometer-firefox';
