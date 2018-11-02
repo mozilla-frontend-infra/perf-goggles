@@ -110,7 +110,8 @@ const signaturesForPlatformSuite = async (seriesConfig) => {
       const jobSignature = allPlatformSignatures[signatureHash];
       if (
         jobSignature.suite === seriesConfig.suite &&
-        (jobSignature.test !== jobSignature.suite && jobSignature.test === seriesConfig.test)
+        ((jobSignature.suite !== jobSignature.test && jobSignature.test === seriesConfig.test) ||
+        (jobSignature.suite === jobSignature.test))
       ) {
         res[signatureHash] = {
           parentSignatureHash: signatureHash,

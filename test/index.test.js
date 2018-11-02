@@ -24,6 +24,8 @@ const WIN10_MMA_DATA = require('./mocks/win10/MotionMarkAnimometer/data');
 const WIN10_MMA_EXPECTED_DATA = require('./mocks/win10/MotionMarkAnimometer/expected');
 const WIN10_TP5O_DATA = require('./mocks/win10/Tp5o/data');
 const WIN10_TP5O_EXPECTED_DATA = require('./mocks/win10/Tp5o/expected');
+const WIN10_SESSION_RESTORE_DATA = require('./mocks/win10/SessionRestore/data');
+const WIN10_SESSION_RESTORE_EXPECTED_DATA = require('./mocks/win10/SessionRestore/expected');
 const OPTION_COLLECTION_HASHES = require('./mocks/optionCollectionHash');
 
 const PROJECT = 'mozilla-central';
@@ -108,6 +110,19 @@ describe('Talos', () => {
       );
       const data = await queryPerformanceData(seriesConfig, false, TIMERANGE);
       const modifiedExpectedData = downcastDatetimesToStrings(WIN10_TP5O_EXPECTED_DATA);
+      assert.deepEqual(data, modifiedExpectedData);
+    });
+    // The session restore benchmarks have an oddity where the test property
+    // matches the suite property. This could be some data polution on Perfherder
+    it('should find Windows 10 Session Restore pgo data', async () => {
+      seriesConfig.suite = 'sessionrestore';
+      fetchMock.get(
+        perfDataUrls(seriesConfig, [1538534], TIMERANGE)[0],
+        WIN10_SESSION_RESTORE_DATA,
+      );
+      const data = await queryPerformanceData(seriesConfig, false, TIMERANGE);
+      const modifiedExpectedData =
+        downcastDatetimesToStrings(WIN10_SESSION_RESTORE_EXPECTED_DATA);
       assert.deepEqual(data, modifiedExpectedData);
     });
   });
