@@ -61,7 +61,7 @@ const fetchPerfData = async (seriesConfig, signatureIds, timerange) => {
   return dataPoints;
 };
 
-const perherderGraphUrl =
+const perfherderGraphUrl =
   ({ project = PROJECT, frameworkId }, signatureIds, timerange = DEFAULT_TIMERANGE) => {
     let baseDataUrl = `${TREEHERDER}/perf.html#/graphs?timerange=${timerange}`;
     baseDataUrl += `&${signatureIds.sort().map(id =>
@@ -163,7 +163,7 @@ const fetchSubtestsData = async (seriesConfig, subtestsInfo, timerange) => {
     subtestsData[subtestHash] = {
       data: dataPoints[subtestHash],
       meta: subtestsInfo[subtestHash], // Original object from Perfherder
-      perfherderUrl: perherderGraphUrl(seriesConfig, [subtestHash]),
+      perfherderUrl: perfherderGraphUrl(seriesConfig, [subtestHash]),
     };
   });
 
@@ -172,22 +172,22 @@ const fetchSubtestsData = async (seriesConfig, subtestsInfo, timerange) => {
 
 export const queryPerformanceData = async (
   seriesConfig,
-  includeSubtests = false,
-  timerange = DEFAULT_TIMERANGE,
+  options,
 ) => {
+  const { includeSubtests = false, timerange = DEFAULT_TIMERANGE } = options;
   const parentInfo = await parentSignatureInfo(seriesConfig);
   // XXX: Throw error instead
   if (!parentInfo) {
     return {};
   }
   let perfData = {};
-  if (!includeSubtests) {
+  if (!(includeSubtests && parentInfo.has_subtests)) {
     const dataPoints = await fetchPerfData(seriesConfig, [parentInfo.id], timerange);
     perfData = {
       [parentInfo.parentSignatureHash]: {
         data: dataPoints[parentInfo.parentSignatureHash],
         meta: parentInfo,
-        perfherderUrl: perherderGraphUrl(seriesConfig, [parentInfo.id]),
+        perfherderUrl: perfherderGraphUrl(seriesConfig, [parentInfo.id]),
       },
     };
   } else {
