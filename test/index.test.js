@@ -83,7 +83,10 @@ describe('Talos', () => {
       );
 
       it('should find Linux64 JetStream pgo subtests data', async () => {
-        const data = await queryPerformanceData(seriesConfig, true, TIMERANGE);
+        const data = await queryPerformanceData(
+          seriesConfig,
+          { includeSubtests: true, timerange: TIMERANGE },
+        );
         const modifiedExpectedData = downcastDatetimesToStrings(LINUX64_JETSTREAM_EXPECTED_DATA);
         assert.deepEqual(data, modifiedExpectedData);
       });
@@ -102,13 +105,14 @@ describe('Talos', () => {
     // The tp5o benchmark has an oddity where we have two versions; both
     // of them have the same suite property, however, one of them does not have
     // the test property. This could be some data polution on Perfherder
-    it('should find Windows 10 Tp5o pgo data', async () => {
+    it('should find Windows 10 Tp5o pgo data (no subtests)', async () => {
       seriesConfig.suite = 'tp5o';
       fetchMock.get(
         perfDataUrls(seriesConfig, [1538597], TIMERANGE)[0],
         WIN10_TP5O_DATA,
       );
-      const data = await queryPerformanceData(seriesConfig, false, TIMERANGE);
+
+      const data = await queryPerformanceData(seriesConfig, { timerange: TIMERANGE });
       const modifiedExpectedData = downcastDatetimesToStrings(WIN10_TP5O_EXPECTED_DATA);
       assert.deepEqual(data, modifiedExpectedData);
     });
@@ -120,7 +124,7 @@ describe('Talos', () => {
         perfDataUrls(seriesConfig, [1538534], TIMERANGE)[0],
         WIN10_SESSION_RESTORE_DATA,
       );
-      const data = await queryPerformanceData(seriesConfig, false, TIMERANGE);
+      const data = await queryPerformanceData(seriesConfig, { timerange: TIMERANGE });
       const modifiedExpectedData =
         downcastDatetimesToStrings(WIN10_SESSION_RESTORE_EXPECTED_DATA);
       assert.deepEqual(data, modifiedExpectedData);
@@ -151,7 +155,10 @@ describe('Raptor', () => {
       fetchMock.get(perfDataUrls(seriesConfig, signatureIds, TIMERANGE)[0], WIN10_MMA_DATA);
 
       it('should find Windows 10 MotionMarkAnimometer pgo subtests data', async () => {
-        const data = await queryPerformanceData(seriesConfig, true, TIMERANGE);
+        const data = await queryPerformanceData(
+          seriesConfig,
+          { includeSubtests: true, timerange: TIMERANGE },
+        );
         const modifiedExpectedData = downcastDatetimesToStrings(WIN10_MMA_EXPECTED_DATA);
         assert.deepEqual(data, modifiedExpectedData);
       });
@@ -185,12 +192,17 @@ describe('Raptor', () => {
     fetchMock.get(`${signaturesUrl(project)}?framework=${frameworkId}&platform=${platform}&subtests=0`, WIN7_SIGNATURES);
 
     describe('MotionMarkAnimometer main score', () => {
-      const suite = 'raptor-motionmark-animometer-firefox';
-      seriesConfig.suite = suite;
-      fetchMock.get(perfDataUrls(seriesConfig, ['1713376'], TIMERANGE)[0], WIN7_MMA_DATA);
+      seriesConfig.suite = 'raptor-motionmark-animometer-firefox';
+      fetchMock.get(
+        perfDataUrls(seriesConfig, [1713376], TIMERANGE)[0],
+        WIN7_MMA_DATA,
+      );
 
       it('The benchmark data should match', async () => {
-        const data = await queryPerformanceData(seriesConfig, false, TIMERANGE);
+        const data = await queryPerformanceData(
+          seriesConfig,
+          { includeSubtests: false, timerange: TIMERANGE },
+        );
         assert.deepEqual(data, downcastDatetimesToStrings(WIN7_MMA_EXPECTED_DATA));
       });
     });
