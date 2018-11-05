@@ -85,7 +85,7 @@ describe('Talos', () => {
       it('should find Linux64 JetStream pgo subtests data', async () => {
         const data = await queryPerformanceData(
           seriesConfig,
-          { includeSubtests: true, timerange: TIMERANGE },
+          { includeSubtests: true, timeRange: TIMERANGE },
         );
         const modifiedExpectedData = downcastDatetimesToStrings(LINUX64_JETSTREAM_EXPECTED_DATA);
         assert.deepEqual(data, modifiedExpectedData);
@@ -112,7 +112,7 @@ describe('Talos', () => {
         WIN10_TP5O_DATA,
       );
 
-      const data = await queryPerformanceData(seriesConfig, { timerange: TIMERANGE });
+      const data = await queryPerformanceData(seriesConfig, { timeRange: TIMERANGE });
       const modifiedExpectedData = downcastDatetimesToStrings(WIN10_TP5O_EXPECTED_DATA);
       assert.deepEqual(data, modifiedExpectedData);
     });
@@ -124,7 +124,7 @@ describe('Talos', () => {
         perfDataUrls(seriesConfig, [1538534], TIMERANGE)[0],
         WIN10_SESSION_RESTORE_DATA,
       );
-      const data = await queryPerformanceData(seriesConfig, { timerange: TIMERANGE });
+      const data = await queryPerformanceData(seriesConfig, { timeRange: TIMERANGE });
       const modifiedExpectedData =
         downcastDatetimesToStrings(WIN10_SESSION_RESTORE_EXPECTED_DATA);
       assert.deepEqual(data, modifiedExpectedData);
@@ -157,7 +157,7 @@ describe('Raptor', () => {
       it('should find Windows 10 MotionMarkAnimometer pgo subtests data', async () => {
         const data = await queryPerformanceData(
           seriesConfig,
-          { includeSubtests: true, timerange: TIMERANGE },
+          { includeSubtests: true, timeRange: TIMERANGE },
         );
         const modifiedExpectedData = downcastDatetimesToStrings(WIN10_MMA_EXPECTED_DATA);
         assert.deepEqual(data, modifiedExpectedData);
@@ -201,7 +201,7 @@ describe('Raptor', () => {
       it('The benchmark data should match', async () => {
         const data = await queryPerformanceData(
           seriesConfig,
-          { includeSubtests: false, timerange: TIMERANGE },
+          { includeSubtests: false, timeRange: TIMERANGE },
         );
         assert.deepEqual(data, downcastDatetimesToStrings(WIN7_MMA_EXPECTED_DATA));
       });
