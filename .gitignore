@@ -65,3 +65,10 @@ coverage
 
 # Side effect of npm link
 package-lock.json
+/src/components
+/src/styleguide
+/src/utils
+/src/convert.js
+/src/queryOps.js
+/src/theme.js
+/src/timeRangeUtils.js
