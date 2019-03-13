@@ -65,6 +65,8 @@ coverage
 
 # Side effect of npm link
 package-lock.json
+
+# Some other vendor files that are not part of this repo
 /src/components
 /src/styleguide
 /src/utils
@@ -72,3 +74,9 @@ package-lock.json
 /src/queryOps.js
 /src/theme.js
 /src/timeRangeUtils.js
+/src/Data.js
+/src/Template.js
+/src/errors.jsx
+/src/math.js
+/src/strings.js
+/src/utils.js
