@@ -18,24 +18,19 @@ const platformSuitesUrl = ({ frameworkId, platform, project }) => (
   `${signaturesUrl(project)}?framework=${frameworkId}&platform=${platform}&subtests=0`
 );
 
-export const perfDataUrls =
-  ({ frameworkId, project }, signatureIds, timeRange) => {
-    const url = dataPointsEndpointUrl(project);
-    const baseParams = stringify({
-      framework: frameworkId,
-      interval: timeRange,
-    });
-    // To guarantee order for tests
-    signatureIds.sort();
-    const urls = [];
-    for (let i = 0; i < (signatureIds.length) / 100; i += 1) {
-      const signaturesParams = stringify({
-        signature_id: signatureIds.slice(i * 100, ((i + 1) * 100)),
-      });
-      urls.push(`${url}?${baseParams}&${signaturesParams}`);
-    }
-    return urls;
-  };
+export const perfDataUrl = ({ frameworkId, project }, signature, timeRange) => {
+  const params = stringify({
+    framework: frameworkId,
+    interval: timeRange,
+    signature_id: signature,
+  });
+  return `${dataPointsEndpointUrl(project)}?${params}`;
+};
+
+export const perfDataUrls = (seriesConfig, signatureIds, timeRange) => (
+  signatureIds.sort().map(signature => (
+    perfDataUrl(seriesConfig, signature, timeRange)
+  )));
 
 const tranformData = data =>
   data.map(datum => ({
