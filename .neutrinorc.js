@@ -1,4 +1,7 @@
 module.exports = {
+  options: {
+    root: __dirname,
+  },
   use: [
     '@neutrinojs/airbnb-base',
     [
@@ -7,6 +10,6 @@ module.exports = {
         name: 'perf-goggles'
       }
     ],
-    ['@neutrinojs/mocha', { recursive: true }]
+    '@neutrinojs/mocha'
   ]
 };
