@@ -19,11 +19,10 @@ const platformSuitesUrl = ({ frameworkId, platform, project }) => (
 );
 
 export const perfDataUrls =
-  ({ frameworkId, project }, signatureIds, timeRange) => {
+  ({ frameworkId, project }, signatureIds) => {
     const url = dataPointsEndpointUrl(project);
     const baseParams = stringify({
       framework: frameworkId,
-      interval: timeRange,
     });
     // To guarantee order for tests
     signatureIds.sort();
@@ -46,9 +45,9 @@ const tranformData = data =>
 // The data contains an object where each key represents a subtest
 // Each data point of that subtest takes the form of:
 // {job_id: 162620134, signature_id: 1659462, id: 414057864, push_id: 306862, value: 54.89 }
-const fetchPerfData = async (seriesConfig, signatureIds, timeRange) => {
+const fetchPerfData = async (seriesConfig, signatureIds) => {
   const dataPoints = {};
-  await Promise.all(perfDataUrls(seriesConfig, signatureIds, timeRange)
+  await Promise.all(perfDataUrls(seriesConfig, signatureIds)
     .map(async (url) => {
       const data = await (await fetch(url)).json();
       Object.keys(data).forEach((hash) => {
@@ -154,10 +153,10 @@ const parentSignatureInfo = async (seriesConfig) => {
   return findParentSignatureInfo(seriesConfig, signatures, options);
 };
 
-const fetchSubtestsData = async (seriesConfig, subtestsInfo, timeRange) => {
+const fetchSubtestsData = async (seriesConfig, subtestsInfo) => {
   const signatureIds = Object.values(subtestsInfo).map(v => v.id);
   const subtestsData = {};
-  const dataPoints = await fetchPerfData(seriesConfig, signatureIds, timeRange);
+  const dataPoints = await fetchPerfData(seriesConfig, signatureIds);
 
   Object.keys(dataPoints).forEach((subtestHash) => {
     subtestsData[subtestHash] = {
@@ -174,7 +173,7 @@ export const queryPerformanceData = async (
   seriesConfig,
   options,
 ) => {
-  const { includeSubtests = false, timeRange = DEFAULT_TIMERANGE } = options;
+  const { includeSubtests = false } = options;
   const parentInfo = await parentSignatureInfo(seriesConfig);
   // XXX: Throw error instead
   if (!parentInfo) {
@@ -182,7 +181,7 @@ export const queryPerformanceData = async (
   }
   let perfData = {};
   if (!(includeSubtests && parentInfo.has_subtests)) {
-    const dataPoints = await fetchPerfData(seriesConfig, [parentInfo.id], timeRange);
+    const dataPoints = await fetchPerfData(seriesConfig, [parentInfo.id]);
     perfData = {
       [parentInfo.parentSignatureHash]: {
         data: dataPoints[parentInfo.parentSignatureHash],
@@ -193,7 +192,7 @@ export const queryPerformanceData = async (
   } else {
     const subtestsMeta = await querySubtests(seriesConfig, parentInfo.parentSignatureHash);
     subtestsMeta[parentInfo.parentSignatureHash] = parentInfo;
-    const subtestsData = await fetchSubtestsData(seriesConfig, subtestsMeta, timeRange);
+    const subtestsData = await fetchSubtestsData(seriesConfig, subtestsMeta);
     Object.keys(subtestsData).forEach((hash) => { perfData[hash] = subtestsData[hash]; });
   }
 
