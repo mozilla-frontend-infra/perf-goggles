@@ -1,5 +1,5 @@
 import 'isomorphic-fetch';
-import isEqual from 'lodash/isEqual';
+import isEqual from 'lodash.isEqual';
 import { stringify } from 'query-string';
 
 export const TREEHERDER = 'https://treeherder.mozilla.org';
@@ -11,10 +11,10 @@ export const signaturesUrl = (project = PROJECT) =>
 
 const dataPointsEndpointUrl = (project = PROJECT) =>
   `${TREEHERDER}/api/project/${project}/performance/data/`;
-const platformSuitesUrl = ({ frameworkId, platform, project }) =>
-  `${signaturesUrl(
-    project
-  )}?framework=${frameworkId}&platform=${platform}&subtests=0`;
+
+const platformSuitesUrl = ({ frameworkId, platform, project }) => (
+  `${signaturesUrl(project)}?framework=${frameworkId}&platform=${platform}&subtests=0`
+);
 
 export const perfDataUrls = (
   { frameworkId, project },
@@ -47,6 +47,7 @@ const tranformData = data =>
     datetime: new Date(datum.push_timestamp * 1000),
     ...datum,
   }));
+
 // The data contains an object where each key represents a subtest
 // Each data point of that subtest takes the form of:
 // {
@@ -264,4 +265,4 @@ const queryPerformanceData = async (seriesConfig, options) => {
   return perfData;
 };
 
-export { queryPerformanceData };
+export default queryPerformanceData;
