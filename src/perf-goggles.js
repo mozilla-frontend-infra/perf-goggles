@@ -1,5 +1,5 @@
 import 'isomorphic-fetch';
-import isEqual from 'lodash.isEqual';
+import isEqual from 'lodash.isequal';
 import { stringify } from 'query-string';
 
 export const TREEHERDER = 'https://treeherder.mozilla.org';
