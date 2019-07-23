@@ -177,7 +177,7 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@neutrinojs/airbnb-base@^8.3.0":
+"@neutrinojs/airbnb-base@8.3.0":
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/@neutrinojs/airbnb-base/-/airbnb-base-8.3.0.tgz#5ebd7f6d63776103c613fa4fbc64bcfa7ae6e7bd"
   integrity sha1-Xr1/bWN3YQPGE/pPvGS8+nrm570=
@@ -262,7 +262,7 @@
     imagemin-webpack "^1.1.2"
     webpack "^3.12.0"
 
-"@neutrinojs/library@^8.3.0":
+"@neutrinojs/library@8.3.0":
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/@neutrinojs/library/-/library-8.3.0.tgz#50fb19897ece5bc3efdcc6054633fcc87a38a6c9"
   integrity sha1-UPsZiX7OW8Pv3MYFRjP8yHo4psk=
@@ -299,7 +299,7 @@
     "@neutrinojs/style-minify" "^8.3.0"
     deepmerge "^1.5.2"
 
-"@neutrinojs/mocha@^8.3.0":
+"@neutrinojs/mocha@8.3.0":
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/@neutrinojs/mocha/-/mocha-8.3.0.tgz#789e0fed49317ef8ab6ec003c25bcbdf909aee55"
   integrity sha1-eJ4P7UkxfvirbsADwlvL35Ca7lU=
@@ -2419,7 +2419,7 @@ cosmiconfig@^5.0.2:
     js-yaml "^3.9.0"
     parse-json "^4.0.0"
 
-coveralls@^3.0.1:
+coveralls@3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/coveralls/-/coveralls-3.0.2.tgz#f5a0bcd90ca4e64e088b710fa8dda640aea4884f"
   integrity sha512-Tv0LKe/MkBOilH2v7WBiTBdudg2ChfGbdXafc/s330djpF3zKOmuehTeRwjXWc7pzfj9FrDUTA7tEx6Div8NFw==
@@ -3795,7 +3795,7 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
-fetch-mock@^6.4.3:
+fetch-mock@6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/fetch-mock/-/fetch-mock-6.5.2.tgz#b3842b305c13ea0f81c85919cfaa7de387adfa3e"
   integrity sha512-EIvbpCLBTYyDLu4HJiqD7wC8psDwTUaPaWXNKZbhNO/peUYKiNp5PkZGKRJtnTxaPQu71ivqafvjpM7aL+MofQ==
@@ -4640,7 +4640,7 @@ https-browserify@^1.0.0:
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
 
-husky@^0.14.3:
+husky@0.14.3:
   version "0.14.3"
   resolved "https://registry.yarnpkg.com/husky/-/husky-0.14.3.tgz#c69ed74e2d2779769a17ba8399b54ce0b63c12c3"
   integrity sha512-e21wivqHpstpoiWA/Yi8eFti8E+sQDSS53cpJsPptPs295QTOQR0ZwnHo2TXy1XOpZFD9rPOd3NpmqTK6uMLJA==
@@ -5617,7 +5617,7 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lint-staged@^7.2.0:
+lint-staged@7.3.0:
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-7.3.0.tgz#90ff33e5ca61ed3dbac35b6f6502dbefdc0db58d"
   integrity sha512-AXk40M9DAiPi7f4tdJggwuKIViUplYtVj1os1MVEteW7qOkU50EOehayCfO9TsoGK24o/EsWb41yrEgfJDDjCw==
@@ -6345,7 +6345,7 @@ neo-async@^2.5.0, neo-async@^2.6.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
-neutrino@^8.3.0:
+neutrino@8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/neutrino/-/neutrino-8.3.0.tgz#36feaa00448d7ca413193e58d51798c2568f672d"
   integrity sha1-Nv6qAESNfKQTGT5Y1ReYwlaPZy0=
@@ -6589,7 +6589,7 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nyc@^12.0.2:
+nyc@12.0.2:
   version "12.0.2"
   resolved "https://registry.yarnpkg.com/nyc/-/nyc-12.0.2.tgz#8a4a4ed690966c11ec587ff87eea0c12c974ba99"
   integrity sha1-ikpO1pCWbBHsWH/4fuoMEsl0upk=
