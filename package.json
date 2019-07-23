@@ -34,15 +34,15 @@
     ]
   },
   "devDependencies": {
-    "@neutrinojs/airbnb-base": "^8.3.0",
-    "@neutrinojs/library": "^8.3.0",
-    "@neutrinojs/mocha": "^8.3.0",
-    "coveralls": "^3.0.1",
-    "fetch-mock": "^6.4.3",
-    "husky": "^0.14.3",
-    "lint-staged": "^7.2.0",
-    "neutrino": "^8.3.0",
-    "nyc": "^12.0.2"
+    "@neutrinojs/airbnb-base": "8.3.0",
+    "@neutrinojs/library": "8.3.0",
+    "@neutrinojs/mocha": "8.3.0",
+    "coveralls": "3.0.2",
+    "fetch-mock": "6.5.2",
+    "husky": "0.14.3",
+    "lint-staged": "7.3.0",
+    "neutrino": "8.3.0",
+    "nyc": "12.0.2"
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
