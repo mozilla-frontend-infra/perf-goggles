@@ -37,7 +37,7 @@
     "@neutrinojs/airbnb-base": "8.3.0",
     "@neutrinojs/library": "8.3.0",
     "@neutrinojs/mocha": "8.3.0",
-    "coveralls": "3.0.2",
+    "coveralls": "3.0.6",
     "fetch-mock": "7.3.9",
     "husky": "0.14.3",
     "lint-staged": "9.2.1",
