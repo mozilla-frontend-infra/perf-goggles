@@ -1,4 +1,6 @@
 /* global describe it */
+// https://github.com/babel/babel/issues/5085#issuecomment-277544677
+import 'babel-polyfill';
 import fetchMock from 'fetch-mock';
 import {
   perfDataUrls,
@@ -125,8 +127,7 @@ describe('Talos', () => {
         WIN10_SESSION_RESTORE_DATA,
       );
       const data = await queryPerformanceData(seriesConfig, { timeRange: TIMERANGE });
-      const modifiedExpectedData =
-        downcastDatetimesToStrings(WIN10_SESSION_RESTORE_EXPECTED_DATA);
+      const modifiedExpectedData = downcastDatetimesToStrings(WIN10_SESSION_RESTORE_EXPECTED_DATA);
       assert.deepEqual(data, modifiedExpectedData);
     });
   });

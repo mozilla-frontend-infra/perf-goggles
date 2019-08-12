@@ -18,30 +18,28 @@ const platformSuitesUrl = ({ frameworkId, platform, project }) => (
   `${signaturesUrl(project)}?framework=${frameworkId}&platform=${platform}&subtests=0`
 );
 
-export const perfDataUrls =
-  ({ frameworkId, project }, signatureIds, timeRange) => {
-    const url = dataPointsEndpointUrl(project);
-    const baseParams = stringify({
-      framework: frameworkId,
-      interval: timeRange,
-    });
+export const perfDataUrls = ({ frameworkId, project }, signatureIds, timeRange) => {
+  const url = dataPointsEndpointUrl(project);
+  const baseParams = stringify({
+    framework: frameworkId,
+    interval: timeRange,
+  });
     // To guarantee order for tests
-    signatureIds.sort();
-    const urls = [];
-    for (let i = 0; i < (signatureIds.length) / 100; i += 1) {
-      const signaturesParams = stringify({
-        signature_id: signatureIds.slice(i * 100, ((i + 1) * 100)),
-      });
-      urls.push(`${url}?${baseParams}&${signaturesParams}`);
-    }
-    return urls;
-  };
+  signatureIds.sort();
+  const urls = [];
+  for (let i = 0; i < (signatureIds.length) / 100; i += 1) {
+    const signaturesParams = stringify({
+      signature_id: signatureIds.slice(i * 100, ((i + 1) * 100)),
+    });
+    urls.push(`${url}?${baseParams}&${signaturesParams}`);
+  }
+  return urls;
+};
 
-const tranformData = data =>
-  data.map(datum => ({
-    datetime: new Date(datum.push_timestamp * 1000),
-    ...datum,
-  }));
+const tranformData = data => data.map(datum => ({
+  datetime: new Date(datum.push_timestamp * 1000),
+  ...datum,
+}));
 
 // The data contains an object where each key represents a subtest
 // Each data point of that subtest takes the form of:
@@ -61,13 +59,15 @@ const fetchPerfData = async (seriesConfig, signatureIds, timeRange) => {
   return dataPoints;
 };
 
-const perfherderGraphUrl =
-  ({ project = PROJECT, frameworkId }, signatureIds, timeRange = DEFAULT_TIMERANGE) => {
-    let baseDataUrl = `${TREEHERDER}/perf.html#/graphs?timerange=${timeRange}`;
-    baseDataUrl += `&${signatureIds.sort().map(id =>
-      `series=${project},${id},1,${frameworkId}`).join('&')}`;
-    return baseDataUrl;
-  };
+const perfherderGraphUrl = (
+  { project = PROJECT, frameworkId },
+  signatureIds,
+  timeRange = DEFAULT_TIMERANGE,
+) => {
+  let baseDataUrl = `${TREEHERDER}/perf.html#/graphs?timerange=${timeRange}`;
+  baseDataUrl += `&${signatureIds.sort().map(id => `series=${project},${id},1,${frameworkId}`).join('&')}`;
+  return baseDataUrl;
+};
 
 const queryAllTreeherderOptions = async () => {
   const response = await fetch(`${TREEHERDER}/api/optioncollectionhash/`);
@@ -82,8 +82,9 @@ const transformOptionCollectionHash = (optionCollectionHash) => {
     //  "option_collection_hash":"531e7f974f8dab5d4d8dfe344a0219a5b1184d20"},
     // and we wanted "options" to look like this instead:
     // "options":["debug", "memleak"]
-    options[optionCollection.option_collection_hash] =
-      optionCollection.options.map(keys => keys.name);
+    options[optionCollection.option_collection_hash] = optionCollection.options.map(
+      keys => keys.name,
+    );
   });
   return options;
 };
@@ -109,9 +110,9 @@ const signaturesForPlatformSuite = async (seriesConfig) => {
     .reduce((res, signatureHash) => {
       const jobSignature = allPlatformSignatures[signatureHash];
       if (
-        jobSignature.suite === seriesConfig.suite &&
-        ((jobSignature.suite !== jobSignature.test && jobSignature.test === seriesConfig.test) ||
-        (jobSignature.suite === jobSignature.test))
+        jobSignature.suite === seriesConfig.suite
+        && ((jobSignature.suite !== jobSignature.test && jobSignature.test === seriesConfig.test)
+        || (jobSignature.suite === jobSignature.test))
       ) {
         res[signatureHash] = {
           parentSignatureHash: signatureHash,

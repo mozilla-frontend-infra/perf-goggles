@@ -11,9 +11,9 @@
   "author": "Armen Zambrano G. <armenzg@gmail.com>",
   "license": "MPL-2.0",
   "scripts": {
-    "build": "neutrino build",
-    "lint": "neutrino lint",
-    "test": "neutrino test",
+    "build": "webpack --mode production",
+    "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test",
+    "test": "mocha",
     "coverage": "nyc -r lcov -r text yarn test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "precommit": "lint-staged",
@@ -29,20 +29,25 @@
     ]
   },
   "lint-staged": {
-    "*.js*": [
-      "neutrino lint"
+    "{src,test}/*.js*": [
+      "yarn lint"
     ]
   },
   "devDependencies": {
-    "@neutrinojs/airbnb-base": "8.3.0",
-    "@neutrinojs/library": "8.3.0",
-    "@neutrinojs/mocha": "8.3.0",
+    "@neutrinojs/airbnb-base": "9.0.0-rc.3",
+    "@neutrinojs/library": "9.0.0-rc.3",
+    "@neutrinojs/mocha": "9.0.0-rc.3",
+    "babel-polyfill": "^6.26.0",
     "coveralls": "3.0.6",
+    "eslint": "^5",
     "fetch-mock": "7.3.9",
     "husky": "3.0.3",
     "lint-staged": "9.2.1",
-    "neutrino": "8.3.0",
-    "nyc": "14.1.1"
+    "mocha": "^6",
+    "neutrino": "9.0.0-rc.3",
+    "nyc": "14.1.1",
+    "webpack": "^4",
+    "webpack-cli": "^3"
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
