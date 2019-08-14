@@ -1,5 +1,5 @@
 /* global describe it */
-// https://github.com/babel/babel/issues/5085#issuecomment-277544677
+// The necessity of this import explained https://github.com/neutrinojs/neutrino/issues/1279
 import 'babel-polyfill';
 import fetchMock from 'fetch-mock';
 import {
