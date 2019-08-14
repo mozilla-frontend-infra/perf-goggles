@@ -37,17 +37,17 @@
     "@neutrinojs/airbnb-base": "9.0.0-rc.3",
     "@neutrinojs/library": "9.0.0-rc.3",
     "@neutrinojs/mocha": "9.0.0-rc.3",
-    "babel-polyfill": "^6.26.0",
+    "babel-polyfill": "6.26.0",
     "coveralls": "3.0.6",
-    "eslint": "^5",
+    "eslint": "5.16.0",
     "fetch-mock": "7.3.9",
     "husky": "3.0.3",
     "lint-staged": "9.2.1",
-    "mocha": "^6",
+    "mocha": "6.2.0",
     "neutrino": "9.0.0-rc.3",
     "nyc": "14.1.1",
-    "webpack": "^4",
-    "webpack-cli": "^3"
+    "webpack": "4.39.1",
+    "webpack-cli": "3.3.6"
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
