@@ -1,12 +1,16 @@
+const airbnbBase = require('@neutrinojs/airbnb-base');
+const library = require('@neutrinojs/library');
+const mocha = require('@neutrinojs/mocha');
+
 module.exports = {
+  options: {
+    root: __dirname,
+  },
   use: [
-    '@neutrinojs/airbnb-base',
-    [
-      '@neutrinojs/library',
-      {
-        name: 'perf-goggles'
-      }
-    ],
-    ['@neutrinojs/mocha', { recursive: true }]
-  ]
+    airbnbBase(),
+    library({
+      name: 'perf-goggles'
+    }),
+    mocha(),
+  ],
 };
